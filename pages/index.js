@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
@@ -24,25 +25,15 @@ export default function Home() {
     answer2: '',
     answer3: '',
   })
-  const [newsletter, saveNewsletter] = useState('')
-
-  const [renderNewsletter, switchRenderNewsletter] = useState(false)
-
   const router = useRouter()
   const handleClick = (e) => {
-    callChatGPT(answers).then((response) => {
-      saveNewsletter(response);
-      switchRenderNewsletter(true)
-    })
+    router.push('sign-up')
   }
   const answerQuestion = (e, q) => {
     updateAnswer({ ...answers, [q]: e.target.value })
   }
   return (
   <>
-    { renderNewsletter && <Newsletter newsletter={newsletter} switchRenderNewsletter={switchRenderNewsletter} /> }
-    { !renderNewsletter &&
-      <>
       <Head>
         <title>Create Next App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,38 +52,67 @@ export default function Home() {
             Your fave newsletter generator.
           </h1>
           <h3 className={styles.description}>
-            whether it's a personal, community, or company newsletter, nujen can make it for you.
+            Whether it's a personal, community, or company newsletter, nujen can make it for you.
           </h3>
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
             <button className={styles.btn} onClick={handleClick}>
               Generate Your First Newsletter Free
             </button>
             <button className={styles.btnSmall} onClick={handleClick}>
-              View Demo
+              View Demo - coming soon!
             </button>
           </div>
         </main>
-        <div className={styles.whySection}>
-          <div className={styles.whyLeft}>
-              Why Nujen?
-            <ul className={styles.whyNujenLi5st}>
-              <li>
+          <div className={styles.whySection}>
+            <div className={styles.whyLeft}>
+                Why Nujen?
+              <ul className={styles.whyNujenList}>
+                <li className={styles.bulletList}>
+                  Save your time
+                  <p className={styles.bulletDesc}>
+                    Cut your newsletter writing time by 90%.
+                  </p>
+                </li>
+                <li className={styles.bulletList}>
+               Customizable 
+                  <p className={styles.bulletDesc}>
+                    Create a newsletter that aligns with your brand identity and voice.
+                  </p>
+                </li>
+                <li className={styles.bulletList}>
+                Community-first
+                  <p className={styles.bulletDesc}>
+                    Send newsletters worth opening, reading & engaging with, and contributing to.
+                  </p>
+                </li>
 
-              </li>
-              <li>
-
-              </li>
-              <li>
-
-              </li>
-
-            </ul>
+              </ul>
+            </div>
+            <div className={styles.whyRight}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src="/newsletter1.jpg"
+                  alt="Picture of the newsletter"
+                  width={275}
+                  height={350}
+                />
+                <Image
+                  src="/newsletter2.jpg"
+                  alt="Picture of the newsletter"
+                  width={275}
+                  height={350}
+                />
+              </div>
+              <div className={styles.sampleNewsletterText}>
+                <a
+                  href="https://www.canva.com/design/DAFWAjyKI90/_5d2RsYq0aunDcz7yidgdg/view?website#4"
+                  target="_blank"
+                 >
+                  {'View Sample Newsletter >'}
+                </a>
+              </div>
+            </div>
           </div>
-          <div className={styles.whyRight}>
-            Image Placeholder
-          </div>
-
-        </div>
         <div className={styles.footer}>
           <div className={styles.footerText}>
             <h1 className={styles.footerTitle}>
@@ -103,13 +123,11 @@ export default function Home() {
             </h3>
           </div>
           <div style={{ marginLeft: 'auto'}}>
-            <button className={styles.footerBtn}>
+            <button onClick={handleClick} className={styles.footerBtn}>
               Generate Newsletter
             </button>
           </div>
         </div>
-    </>
-}
 </>
   )
 }

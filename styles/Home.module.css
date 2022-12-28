@@ -11,10 +11,15 @@
 .whySection {
   display: flex;
   flex-direction: row;
-  text-align: center;
   padding: 6rem;
   min-height: 50vh;
   background-color: white;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .footer {
@@ -37,13 +42,44 @@
   color: black;
 }
 
+.bulletList {
+  margin-bottom: 15px;
+}
+
+.bulletDesc {
+  font-size: 18px;
+  color: grey;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.whyNujenList {
+  flex: 1;
+  list-style: none;
+  margin-top: 25px;
+  padding: 10px;
+  font-size: 24px;
+}
+
 .whyLeft {
   flex: 1;
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .whyRight {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.sampleNewsletterText{
+  display: flex;
+  justify-content: center;
 }
 
 .newsletterMain {
@@ -179,7 +215,6 @@
    align-self: center;
    border-radius: 20px;
    padding: 12px;
-   cursor: pointer;
  }
 
  .header {
