@@ -58,8 +58,15 @@ export default function Home() {
             <button className={styles.btn} onClick={handleClick}>
               Generate Your First Newsletter Free
             </button>
-            <button className={styles.btnSmall} onClick={handleClick}>
-              View Demo - coming soon!
+            <button className={styles.btnSmall}>
+              <a 
+                href="https://www.loom.com/share/edadf0c9dc4a46a5a05378b60950d27e"
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: 'none', color: '#333' }}
+              >
+                View Demo
+              </a>
             </button>
           </div>
         </main>
