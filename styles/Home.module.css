@@ -36,7 +36,9 @@
 }
 
 .footerDescription {
-  font-size: 32px;
+  font-size: 24px;
+  margin-top: 25px;
+  margin-bottom: 17px;
   font-weight: bold;
   color: black;
 }

@@ -44,7 +44,7 @@ export default function Home() {
             Nujen
         </h3>
           <button className={styles.headerBtn} onClick={handleClick}>
-            Generate Your First Newsletter Free
+            Generate Your First Free Newsletter
           </button>
         </div>
         <main className={styles.main}>
@@ -56,7 +56,7 @@ export default function Home() {
           </h3>
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
             <button className={styles.btn} onClick={handleClick}>
-              Generate Your First Newsletter Free
+              Generate Your First Free Newsletter
             </button>
             <button className={styles.btnSmall}>
               <a 
@@ -124,7 +124,7 @@ export default function Home() {
         <div className={styles.footer}>
           <div className={styles.footerText}>
             <h1 className={styles.footerTitle}>
-              Ready to get started?
+              Ready for Nujen?
             </h1>
             <h3 className={styles.footerDescription}>
               Automate your newsletter creation with Nujen
@@ -132,7 +132,7 @@ export default function Home() {
           </div>
           <div style={{ marginLeft: 'auto'}}>
             <button onClick={handleClick} className={styles.footerBtn}>
-              Generate Newsletter
+              Generate Your First Free Newsletter
             </button>
           </div>
         </div>
