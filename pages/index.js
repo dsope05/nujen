@@ -124,7 +124,7 @@ export default function Home() {
         <div className={styles.footer}>
           <div className={styles.footerText}>
             <h1 className={styles.footerTitle}>
-              Ready for Nujen?
+              Ready to get started?
             </h1>
             <h3 className={styles.footerDescription}>
               Automate your newsletter creation with Nujen
