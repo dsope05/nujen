@@ -52,7 +52,7 @@ export default function Home() {
             Your fave newsletter generator.
           </h1>
           <h3 className={styles.description}>
-            Whether it's a personal, community, or company newsletter, nujen can make it for you.
+            { "Whether it's a personal, community, or company newsletter, nujen can make it for you."}
           </h3>
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
             <button className={styles.btn} onClick={handleClick}>
@@ -107,6 +107,7 @@ export default function Home() {
                 <a
                   href="https://www.canva.com/design/DAFWAjyKI90/_5d2RsYq0aunDcz7yidgdg/view?website#4"
                   target="_blank"
+                  rel="noreferrer"
                  >
                   {'View Sample Newsletter >'}
                 </a>
