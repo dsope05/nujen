@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 6rem;
+  padding: 0 6rem 6rem 6rem;
   min-height: 100vh;
 }
 
@@ -151,7 +151,8 @@
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
-  font-size: 60px;
+  font-size: 64px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .description {
@@ -166,8 +167,16 @@
   margin: 100px;
 }
 
+.green {
+  color: green;
+}
+
 .question {
   margin: 10px;
+}
+
+.viewNewsletterBtn {
+  padding: 10px;
 }
 
  .headerBtn {
@@ -175,12 +184,7 @@
    margin-left: auto;
    color: #333;
    padding: 10px;
-   background-color: inherit;
-   border-radius: 15px;
    border: 1px solid #333;
-   display: flex;
-   align-self: center;
-   cursor: pointer;
  }
 
  .footerBtn {
@@ -188,33 +192,17 @@
    padding: 10px;
    color: white;
    margin-top: 10px;
-   display: flex;
-   align-self: center;
-   border-radius: 20px;
-   padding: 12px;
-   cursor: pointer;
  }
 
 
  .btn {
    background-color: green;
-   padding: 10px;
    color: white;
    margin-top: 10px;
-   display: flex;
-   align-self: center;
-   border-radius: 20px;
-   padding: 12px;
-   cursor: pointer;
  }
 
  .btnSmall {
-   padding: 10px;
-   background-color: white;
    margin-top: 10px;
-   display: flex;
-   align-self: center;
-   border-radius: 20px;
    padding: 12px;
  }
 

@@ -7,15 +7,15 @@ import { useRouter } from 'next/router'
 export default function Newsletter({ switchRenderNewsletter, newsletter }) {
   const router = useRouter()
   const goBack = () => {
-      switchRenderNewsletter(false)
+    router.push('/')
   }
 
   return (
     <>
     <div className={styles.header}>
-       <h3 style={{ cursor: 'pointer', marginLeft: '50px' }} onClick={goBack}>
-           Nujen
-       </h3>
+       <h3 onClick={goBack} style={{ cursor: 'pointer', marginLeft: '40px', color: '#333', fontSize: '24px' }}>
+            Nujen
+        </h3>
     </div>
       <main className={styles.newsletterMain}>
         <div className={styles.newsletterCenter}>
@@ -23,7 +23,7 @@ export default function Newsletter({ switchRenderNewsletter, newsletter }) {
             Newsletter 
           </h1>
           <p style={{ lineHeight: 1.5, fontSize: 18 }}>
-            { newsletter }
+            Test Newsletter
           </p>
         </div>
       </main>
