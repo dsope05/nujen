@@ -49,7 +49,14 @@ export default function Home() {
         <h3 style={{ cursor: 'pointer', marginLeft: '40px', color: '#333', fontSize: '24px' }}>
             Nujen
         </h3>
-          <Button variant="outlined" className={styles.headerBtn} onClick={handleClick}>
+          <Button variant="outlined" sx={{
+             marginRight: '20px',
+             marginLeft: 'auto',
+             color: '#333',
+             padding: '10px',
+             border: '1px solid #333',
+           }
+          } onClick={handleClick}>
             Generate Your First Free Newsletter
           </Button>
         </div>
@@ -61,10 +68,17 @@ export default function Home() {
             { "Whether it's a personal, community, or company newsletter, nujen can make it for you."}
           </h3>
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
-            <Button variant="contained" className={styles.btn} onClick={handleClick}>
+            <Button variant="contained" sx={{
+              backgroundColor: 'green',
+              color: 'white',
+              marginTop: '10px',
+            }} onClick={handleClick}>
               Generate Your First Free Newsletter
             </Button>
-            <Button variant="text" className={styles.btnSmall}>
+            <Button variant="text" sx={{
+                 marginTop: '10px',
+                 padding: '12px',
+            }}>
               <a 
                 href="https://www.loom.com/share/edadf0c9dc4a46a5a05378b60950d27e"
                 target="_blank"
@@ -118,6 +132,9 @@ export default function Home() {
               </div>
                 <Button
                   variant="text" 
+                  sx={{
+                    padding: '10px',
+                  }}
                   className={styles.viewNewsletterBtn}
                 >
                   <a
@@ -141,7 +158,12 @@ export default function Home() {
             </h3>
           </div>
           <div style={{ marginLeft: 'auto'}}>
-            <Button variant="contained" onClick={handleClick} className={styles.footerBtn}>
+            <Button variant="contained" onClick={handleClick} sx={{
+                backgroundColor: 'green',
+                padding: '10px',
+                color: 'white',
+                marginTop: '10px',
+                }}>
               Generate Your First Free Newsletter
             </Button>
           </div>

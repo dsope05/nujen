@@ -14,6 +14,13 @@ import styles from '../../styles/sign-up.module.css'
 
 const steps = ['Personal Info', 'Newsletter', 'Last Stuff'];
 
+const textInputSx = {
+    backgroundColor: 'white',
+    marginBottom: '10px',
+    width: '30%',
+
+}
+
 export default function HorizontalLinearStepper() {
   const [formData, updateFormData] = React.useState({});
   const [activeStep, setActiveStep] = React.useState(0);
@@ -133,20 +140,20 @@ export default function HorizontalLinearStepper() {
           <React.Fragment>
             { activeStep === 0 &&  (
               <div className={styles.stepperContainer}>
-                <TextField onChange={onChange} id="firstName" label="First Name" variant="outlined" className={styles.textInput}/>
-                <TextField onChange={onChange} id="lastName" label="Last Name" variant="outlined" className={styles.textInput}/>
+                <TextField onChange={onChange} id="firstName" label="First Name" variant="outlined" sx={textInputSx}/>
+                <TextField onChange={onChange} id="lastName" label="Last Name" variant="outlined" sx={textInputSx}/>
               </div>
             )}
             { activeStep === 1 &&  (
               <div className={styles.stepperContainer}>
-                <TextField onChange={onChange} id="Other1" label="Other" variant="outlined" className={styles.textInput}/>
-                <TextField onChange={onChange} id="Other2" label="Other" variant="outlined" className={styles.textInput}/>
+                <TextField onChange={onChange} id="Other1" label="Other" variant="outlined" sx={textInputSx}/>
+                <TextField onChange={onChange} id="Other2" label="Other" variant="outlined" sx={textInputSx}/>
               </div>
             )}
             { activeStep === 2 &&  (
               <div className={styles.stepperContainer}>
-                <TextField onChange={onChange} id="End1" label="Other" variant="outlined" className={styles.textInput}/>
-                <TextField onChange={onChange} id="End2" label="Other" variant="outlined" className={styles.textInput}/>
+                <TextField onChange={onChange} id="End1" label="End" variant="outlined" sx={textInputSx}/>
+                <TextField onChange={onChange} id="End2" label="End1" variant="outlined" sx={textInputSx}/>
               </div>
             )}
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
