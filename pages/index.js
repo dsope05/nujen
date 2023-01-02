@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
 import { useState } from 'react';
 import Newsletter from './newsletter';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -39,6 +40,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Analytics />
         <div className={styles.header}>
         <h3 style={{ cursor: 'pointer', marginLeft: '40px', color: '#333', fontSize: '24px' }}>
             Nujen
