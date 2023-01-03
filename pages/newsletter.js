@@ -3,8 +3,12 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
+import { selectCaptchaState, setCaptchaState } from "../store/captchaSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Newsletter({ switchRenderNewsletter, newsletter }) {
+  const authState = useSelector(selectCaptchaState);
+  console.log('authSTATE newlsetter', authState)
   const router = useRouter()
   const goBack = () => {
     router.push('/')

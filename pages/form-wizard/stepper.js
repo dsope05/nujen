@@ -10,6 +10,8 @@ import Modal from '@mui/material/Modal';
 import ReCAPTCHA from "react-google-recaptcha";
 import { style } from '@mui/system';
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from "react-redux";
+import { selectCaptchaState, setCaptchaState } from "../../store/captchaSlice";
 import styles from '../../styles/sign-up.module.css'
 
 
@@ -29,14 +31,11 @@ export default function HorizontalLinearStepper() {
   const [skipped, setSkipped] = React.useState(new Set());
   const [showCaptcha, updateShowCaptcha] = React.useState(false);
   const [showModal, updateShowModal] = React.useState(false);
-  const [isMobile, updateIsMobile] = React.useState(false);
+  const [captchaPass, updateCaptchaPass] = React.useState(false);
   const router = useRouter()
-  React.useEffect(() => {
-    const mobile = !!navigator.userAgent.match(/iphone|android|blackberry|Windows Phone/ig) || false;
-    if (mobile) {
-      updateIsMobile(true);
-    }
-  }, [])
+  const captchaState = useSelector(selectCaptchaState);
+  const dispatch = useDispatch();
+  console.log('captchastate', captchaState)
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -56,13 +55,13 @@ export default function HorizontalLinearStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
     if (e.target.innerText === 'FINISH') {
-      if (isMobile) {
+      if (captchaState === true) {
         router.push('/newsletter')
-      } else {
+
+      }
         updateShowModal(true)
       }
     }
-  };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -88,9 +87,19 @@ export default function HorizontalLinearStepper() {
     updateFormData(newFormData)
   }
 
-  const onChangeCaptcha = (value) => {
-      if (value) {
-        router.push('/newsletter')
+  const onChangeCaptcha = async (value) => {
+    const response = await fetch(process.env.CAPTCHA_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        secret: process.env.CAPTCHA_SECRET,
+        response: value,
+      })
+    }).then(res => res.json())
+      console.log('response', response)
+      if (response?.success === true) {
+        dispatch(setCaptchaState(true))
+        console.log('successsssss', response)
+        setTimeout(() => router.push('/newsletter'), 5000)
       }
   }
 
@@ -108,7 +117,7 @@ export default function HorizontalLinearStepper() {
       Newsletter Generator
     </div>
       <Box sx={{ width: '100%' }}>
-        { showModal && (
+        { showModal && !captchaState && (
           <Modal
             open={showModal}
             onClose={handleClose}
