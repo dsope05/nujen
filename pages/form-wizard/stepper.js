@@ -12,6 +12,8 @@ import { style } from '@mui/system';
 import { useRouter } from 'next/router'
 import styles from '../../styles/sign-up.module.css'
 
+
+const isMobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
 const steps = ['Personal Info', 'Newsletter', 'Last Stuff'];
 
 const textInputSx = {
@@ -48,7 +50,11 @@ export default function HorizontalLinearStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
     if (e.target.innerText === 'FINISH') {
-      updateShowModal(true)
+      if (isMobile) {
+        router.push('/newsletter')
+      } else {
+        updateShowModal(true)
+      }
     }
   };
 
@@ -107,7 +113,8 @@ export default function HorizontalLinearStepper() {
                 onChange={(value) => onChangeCaptcha(value)}
               />
             </div>
-            </Modal>)}
+            </Modal>
+          )}
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const stepProps = {};

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import styles from '../styles/sign-up.module.css'
 import StepWizard from "react-step-wizard";
-import Stepper from './form-wizard/stepper';
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+
+const Stepper = dynamic(() => import('./form-wizard/stepper'), { ssr: false })
 
  
  
