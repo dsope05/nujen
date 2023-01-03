@@ -2,12 +2,9 @@ import { useState } from 'react';
 import styles from '../styles/sign-up.module.css'
 import StepWizard from "react-step-wizard";
 import dynamic from 'next/dynamic'
+import Stepper from './form-wizard/stepper';
 import { useRouter } from 'next/router'
 
-const Stepper = dynamic(() => import('./form-wizard/stepper'), { ssr: false })
-
- 
- 
 export default function Signup() {
     const router = useRouter();
     const goBack = () => {

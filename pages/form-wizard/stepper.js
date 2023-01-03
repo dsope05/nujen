@@ -13,7 +13,6 @@ import { useRouter } from 'next/router'
 import styles from '../../styles/sign-up.module.css'
 
 
-const isMobile = !!navigator.userAgent.match(/iphone|android|blackberry/ig) || false;
 const steps = ['Personal Info', 'Newsletter', 'Last Stuff'];
 
 const textInputSx = {
@@ -30,7 +29,14 @@ export default function HorizontalLinearStepper() {
   const [skipped, setSkipped] = React.useState(new Set());
   const [showCaptcha, updateShowCaptcha] = React.useState(false);
   const [showModal, updateShowModal] = React.useState(false);
+  const [isMobile, updateIsMobile] = React.useState(false);
   const router = useRouter()
+  React.useEffect(() => {
+    const mobile = !!navigator.userAgent.match(/iphone|android|blackberry|Windows Phone/ig) || false;
+    if (mobile) {
+      updateIsMobile(true);
+    }
+  }, [])
 
   const isStepOptional = (step) => {
     return step === 1;
