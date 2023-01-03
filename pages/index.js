@@ -12,6 +12,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Button from '@mui/material/Button';
+import Hidden from '@mui/material/Hidden';
 import { typographyClasses } from '@mui/material'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -49,16 +50,17 @@ export default function Home() {
         <h3 style={{ cursor: 'pointer', marginLeft: '40px', color: '#333', fontSize: '24px' }}>
             Nujen
         </h3>
+        <Hidden smDown>
           <Button variant="outlined" sx={{
              marginRight: '20px',
              marginLeft: 'auto',
              color: '#333',
-             padding: '10px',
              border: '1px solid #333',
            }
           } onClick={handleClick}>
             Generate Your First Free Newsletter
           </Button>
+        </Hidden>
         </div>
         <main className={styles.main}>
           <h1 className={styles.title}>
@@ -67,7 +69,7 @@ export default function Home() {
           <h3 className={styles.description}>
             { "Whether it's a personal, community, or company newsletter, nujen can make it for you."}
           </h3>
-          <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
+          <div className={styles.homepageBtnContainer}>
             <Button variant="contained" sx={{
               backgroundColor: 'green',
               color: 'white',

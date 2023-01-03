@@ -18,6 +18,7 @@ const textInputSx = {
     backgroundColor: 'white',
     marginBottom: '10px',
     width: '30%',
+    minWidth: '300px',
 
 }
 
@@ -166,12 +167,6 @@ export default function HorizontalLinearStepper() {
                 Back
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
-              {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                  Skip
-                </Button>
-              )}
-
               <Button onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>

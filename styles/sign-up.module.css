@@ -1,5 +1,5 @@
 .main {
-  padding: 2rem 6rem 6rem 6rem;
+  padding: 6rem;
   min-height: 100vh;
   }
 
@@ -44,8 +44,16 @@
   }
 
   .title {
+    text-align: center;
     font-size: 36px;
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+  }
+
+  @media (max-width: 700px) {
+    .main {
+      padding: 2rem;
+      min-height: 100vh;
+    }
   }
