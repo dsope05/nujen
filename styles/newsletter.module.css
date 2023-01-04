@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   padding: 2rem;
-  min-height: 50vh;
+  min-height: 100vh;
 }
 
  .header {
@@ -43,4 +43,9 @@
   background-color: #E0C9A6;
   padding: 25px;
   border-radius: 10px;
+}
+
+.loadingSpinner {
+  display: flex;
+  justify-content: center;
 }
