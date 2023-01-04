@@ -73,7 +73,7 @@ export default function HorizontalLinearStepper() {
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
+      // it should never occur unless someone&apos;s actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
 
@@ -251,7 +251,7 @@ export default function HorizontalLinearStepper() {
             {activeStep === 3 && (
               <div className={styles.stepperContainer}>
                 <h1>Intro to Nujen</h1>
-                <i>WHOO! You're almost there.</i>
+                <i>WHOO! You&apos;re almost there.</i>
                 <br />
                 Just a heads up - for now, the format of Nujen Newsletters is as
                 follows:
@@ -264,7 +264,7 @@ export default function HorizontalLinearStepper() {
                 The ability to customize the format is part of our roadmap 😌.
                 <br />
                 <br />
-                Alrighty. Next, we’re going to ask you questions to help us
+                Alrighty. Next, we&apos;re going to ask you questions to help us
                 build your FIRST EVER Nujen Newsletter using this format. Lfg.
               </div>
             )}
@@ -272,7 +272,7 @@ export default function HorizontalLinearStepper() {
               <div className={styles.stepperContainer}>
                 <div>
                   <h2>
-                    What’s the specific, unique and disputable purpose of the
+                    What&apos;s the specific, unique and disputable purpose of the
                     newsletter?
                   </h2>
                   <br />
@@ -318,7 +318,7 @@ export default function HorizontalLinearStepper() {
                   internet revolution.
                   <br />
                   <br />
-                  <i>That's more like it. Now it's your turn!</i>
+                  <i>That&apos;s more like it. Now it&apos;s your turn!</i>
                   <br />
                   <br />
                 </div>
@@ -330,7 +330,7 @@ export default function HorizontalLinearStepper() {
                   sx={textInputSx}
                 />
                 <br />
-                <h2>Who's the newsletter for?</h2>
+                <h2>Who&apos;s the newsletter for?</h2>
                 <br />
                 <i>Be very specific.</i>
                 <br />
@@ -346,7 +346,7 @@ export default function HorizontalLinearStepper() {
                   sx={textInputSx}
                 />
                 <br />
-                <h2>Share the newsletter's 1st topic.</h2>
+                <h2>Share the newsletter&apos;s 1st topic.</h2>
                 <br />
                 e.g. Entrepreneurship
                 <br />
@@ -359,7 +359,7 @@ export default function HorizontalLinearStepper() {
                   sx={textInputSx}
                 />
                 <br />
-                <h2>Share the newsletter's 2nd topic.</h2>
+                <h2>Share the newsletter&apos;s 2nd topic.</h2>
                 <br />
                 e.g. Venturing with Compassion
                 <br />
@@ -372,7 +372,7 @@ export default function HorizontalLinearStepper() {
                   sx={textInputSx}
                 />
                 <br />
-                <h2>Share the newsletter's 3rd topic.</h2>
+                <h2>Share the newsletter&apos;s 3rd topic.</h2>
                 <br />
                 e.g. Web3
                 <br />
@@ -389,24 +389,24 @@ export default function HorizontalLinearStepper() {
             {activeStep === 5 && (
               <div className={styles.stepperContainer}>
                 <h1>Community Updates</h1>
-                Where you'll be sharing updates about the community. For
+                Where you&apos;ll be sharing updates about the community. For
                 example:
                 <br />
                 <br />
                 <h3>Title 👇</h3>
-                <i>"Events"</i>
+                <i>Events</i>
                 <br />
                 <h3>Info 👇</h3>
                 <i>
-                  "There are several events coming up! Tea Time is on Saturday,
+                  There are several events coming up! Tea Time is on Saturday,
                   January 14th, 2023 at 8am PT. Agenda: Warm-up, Q1 Roadmap, and
-                  Open Floor. We'll be meeting on Discord. Podcast Club is on
-                  Wednesday, January 11th, 2023 at 10am PT. We'll be discussing
-                  a Seed Club episode. we'll also be meeting on Discord."
+                  Open Floor. We&apos;ll be meeting on Discord. Podcast Club is on
+                  Wednesday, January 11th, 2023 at 10am PT. We&apos;ll be discussing
+                  a Seed Club episode. we&apos;ll also be meeting on Discord.
                 </i>
                 <br />
                 <b>
-                  Note: No need to worry too much about copy - we'll make it
+                  Note: No need to worry too much about copy - we&apos;ll make it
                   enticing for your readers!
                 </b>
                 <br />
@@ -548,28 +548,28 @@ export default function HorizontalLinearStepper() {
                 <TextField
                   onChange={onChange}
                   id="member1Name"
-                  label="Member's First Name"
+                  label="Member&apos;s First Name"
                   variant="outlined"
                   sx={textInputSx}
                 />
                 <TextField
                   onChange={onChange}
                   id="member1TwitterHandle"
-                  label="Member's Twitter Handle"
+                  label="Member&apos;s Twitter Handle"
                   variant="outlined"
                   sx={textInputSx}
                 />
                 <TextField
                   onChange={onChange}
                   id="member1Contribution"
-                  label="Member's Contribution"
+                  label="Member&apos;s Contribution"
                   variant="outlined"
                   sx={textInputSx}
                 />
                 <TextField
                   onChange={onChange}
                   id="member1Impact"
-                  label="Member's Impact"
+                  label="Member&apos;s Impact"
                   variant="outlined"
                   sx={textInputSx}
                 />
@@ -578,28 +578,28 @@ export default function HorizontalLinearStepper() {
                 <TextField
                   onChange={onChange}
                   id="member2Name"
-                  label="Member's First Name"
+                  label="Member&apos;s First Name"
                   variant="outlined"
                   sx={textInputSx}
                 />
                 <TextField
                   onChange={onChange}
                   id="member2TwitterHandle"
-                  label="Member's Twitter Handle"
+                  label="Member&apos;s Twitter Handle"
                   variant="outlined"
                   sx={textInputSx}
                 />
                 <TextField
                   onChange={onChange}
                   id="member2Contribution"
-                  label="Member's Contribution"
+                  label="Member&apos;s Contribution"
                   variant="outlined"
                   sx={textInputSx}
                 />
                 <TextField
                   onChange={onChange}
                   id="member2Impact"
-                  label="Member's Impact"
+                  label="Member&apos;s Impact"
                   variant="outlined"
                   sx={textInputSx}
                 />
