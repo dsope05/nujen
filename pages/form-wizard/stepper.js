@@ -25,10 +25,24 @@ const steps = [
   "Learn & Celebrate",
 ];
 
+const textInputSxLong = {
+  backgroundColor: "white",
+  marginBottom: "10px",
+  width: "70%",
+  minWidth: "300px",
+};
+
 const textInputSx = {
   backgroundColor: "white",
   marginBottom: "10px",
   width: "30%",
+  minWidth: "300px",
+};
+
+const multiLineTextInputSx = {
+  backgroundColor: "white",
+  marginBottom: "10px",
+  width: "70%",
   minWidth: "300px",
 };
 
@@ -44,6 +58,11 @@ export default function HorizontalLinearStepper() {
   const formDataState = useSelector(selectFormDataState);
   console.log('formdata', formDataState)
   const dispatch = useDispatch();
+  if (process.env.ENV === 'dev') {
+    //dispatch();
+    //dispatch(setFormDataState(newFormData))
+
+  }
   const isStepOptional = (step) => {
     //return step === 1;
   };
@@ -173,6 +192,7 @@ export default function HorizontalLinearStepper() {
                   label="Email"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.email || ''}
                 />
               </div>
             )}
@@ -186,6 +206,7 @@ export default function HorizontalLinearStepper() {
                   label="First Name"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.firstName|| ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -193,6 +214,7 @@ export default function HorizontalLinearStepper() {
                   label="Last Name"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.lastName || ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -200,6 +222,7 @@ export default function HorizontalLinearStepper() {
                   label="Twitter Handle"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.twitterHandle || ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -207,6 +230,7 @@ export default function HorizontalLinearStepper() {
                   label="Ethnicity"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.ethnicity || ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -214,20 +238,27 @@ export default function HorizontalLinearStepper() {
                   label="Gender"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.gender || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="autobiography"
                   label="1-Paragraph Autobiography"
                   variant="outlined"
-                  sx={textInputSx}
+                  multiline
+                  rows={4}
+                  sx={multiLineTextInputSx}
+                  defaultValue={formDataState?.autobiography || ''}
                 />
                 <TextField
                   onChange={onChange}
+                  multiline
+                  rows={4}
                   id="writingSample"
                   label="Writing Sample"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={multiLineTextInputSx}
+                  defaultValue={formDataState?.writingSample || ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -235,6 +266,7 @@ export default function HorizontalLinearStepper() {
                   label="1-2 Obsessions"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.obsessions || ''}
                 />
               </div>
             )}
@@ -248,6 +280,7 @@ export default function HorizontalLinearStepper() {
                   label="Company Name"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.company || ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -255,6 +288,7 @@ export default function HorizontalLinearStepper() {
                   label="Company Twitter Handle"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.companyTwitterHandle || ''}
                 />
               </div>
             )}
@@ -337,7 +371,10 @@ export default function HorizontalLinearStepper() {
                   id="purpose"
                   label="Specific, Unique & Disputable Purpose"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={multiLineTextInputSx}
+                  defaultValue={formDataState?.purpose || ''}
                 />
                 <br />
                 <h2>Who&apos;s the newsletter for?</h2>
@@ -353,7 +390,10 @@ export default function HorizontalLinearStepper() {
                   id="readers"
                   label="Readers"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.readers || ''}
                 />
                 <br />
                 <h2>Share the newsletter&apos;s 1st topic.</h2>
@@ -366,7 +406,8 @@ export default function HorizontalLinearStepper() {
                   id="topic1"
                   label="Topic #1"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.topic1 || ''}
                 />
                 <br />
                 <h2>Share the newsletter&apos;s 2nd topic.</h2>
@@ -379,7 +420,8 @@ export default function HorizontalLinearStepper() {
                   id="topic2"
                   label="Topic #2"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.topic2 || ''}
                 />
                 <br />
                 <h2>Share the newsletter&apos;s 3rd topic.</h2>
@@ -392,7 +434,8 @@ export default function HorizontalLinearStepper() {
                   id="topic3"
                   label="Topic #3"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.topic3 || ''}
                 />
               </div>
             )}
@@ -426,14 +469,18 @@ export default function HorizontalLinearStepper() {
                   id="communityS1Title"
                   label="Title"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.communityS1Title || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="communityS1Info"
                   label="Info"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.communityS1Info || ''}
                 />
                 <br />
                 <h2>Section 2</h2>
@@ -442,14 +489,18 @@ export default function HorizontalLinearStepper() {
                   id="communityS2Title"
                   label="Title"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.communityS2Title || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="communityS2Info"
                   label="Info"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.communityS2Info || ''}
                 />
                 <br />
                 <h2>Section 3</h2>
@@ -458,14 +509,18 @@ export default function HorizontalLinearStepper() {
                   id="communityS3Title"
                   label="Title"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.communityS3Title || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="communityS3Info"
                   label="Info"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.communityS3Info || ''}
                 />
                 <br />
               </div>
@@ -486,21 +541,24 @@ export default function HorizontalLinearStepper() {
                   id="article1Title"
                   label="Title"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article1Title || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="article1Author"
                   label="Author"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article1Author || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="article1Link"
                   label="URL"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article1Link || ''}
                 />
                 <br />
                 <h3>Article #2</h3>
@@ -509,21 +567,24 @@ export default function HorizontalLinearStepper() {
                   id="article2Title"
                   label="Title"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article2Title || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="article2Author"
                   label="Author"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article2Author || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="article2Link"
                   label="URL"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article2Link || ''}
                 />
                 <br />
                 <h3>Article #3</h3>
@@ -532,21 +593,24 @@ export default function HorizontalLinearStepper() {
                   id="article3Title"
                   label="Title"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article3Title || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="article3Author"
                   label="Author"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article3Author || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="article3Link"
                   label="URL"
                   variant="outlined"
-                  sx={textInputSx}
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.article3Link || ''}
                 />
                 <br />
                 <h2>Celebrate</h2>
@@ -561,6 +625,7 @@ export default function HorizontalLinearStepper() {
                   label="Member&apos;s First Name"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.member1Name || ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -568,20 +633,27 @@ export default function HorizontalLinearStepper() {
                   label="Member&apos;s Twitter Handle"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.member1TwitterHandle || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="member1Contribution"
                   label="Member&apos;s Contribution"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.member1Contribution || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="member1Impact"
                   label="Member&apos;s Impact"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.member1Impact || ''}
                 />
                 <br />
                 <h3>Member #2</h3>
@@ -591,6 +663,7 @@ export default function HorizontalLinearStepper() {
                   label="Member&apos;s First Name"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.member2Name || ''}
                 />
                 <TextField
                   onChange={onChange}
@@ -598,20 +671,27 @@ export default function HorizontalLinearStepper() {
                   label="Member&apos;s Twitter Handle"
                   variant="outlined"
                   sx={textInputSx}
+                  defaultValue={formDataState?.member2TwitterHandle || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="member2Contribution"
                   label="Member&apos;s Contribution"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.member2Contribution || ''}
                 />
                 <TextField
                   onChange={onChange}
                   id="member2Impact"
                   label="Member&apos;s Impact"
                   variant="outlined"
-                  sx={textInputSx}
+                  rows={2}
+                  multiline
+                  sx={textInputSxLong}
+                  defaultValue={formDataState?.member2Impact || ''}
                 />
               </div>
             )}
