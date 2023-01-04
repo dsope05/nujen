@@ -5,6 +5,8 @@ export default async function handler(req, res) {
     res.status(200).json({ success: true })
   } else {
     const { value } = JSON.parse(req.body);
+    res.status(200).json({ success: true })
+    /*
     fetch(process.env.CAPTCHA_URL, {
       method: 'POST',
       body: JSON.stringify({
@@ -19,6 +21,6 @@ export default async function handler(req, res) {
         res.status(500).json({ success: false })
       }
     })
-
+    */
   }
 }
