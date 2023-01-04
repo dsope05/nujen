@@ -83,13 +83,6 @@
   justify-content: center;
 }
 
-.newsletterMain {
-  display: flex;
-  justify-content: center;
-  padding: 6rem;
-  min-height: 50vh;
-}
-
 .description {
   display: inherit;
   justify-content: inherit;
@@ -196,15 +189,6 @@
   font-size: 0.9rem;
   line-height: 1.5;
   max-width: 30ch;
-}
-
-.newsletterCenter {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 4rem 0;
-  width: 70%;
 }
 
 .center {

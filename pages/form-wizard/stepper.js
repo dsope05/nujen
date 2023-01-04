@@ -12,7 +12,8 @@ import { style } from "@mui/system";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCaptchaState, setCaptchaState } from "../../store/captchaSlice";
-import styles from "../../styles/sign-up.module.css";
+import { selectFormDataState, setFormDataState } from "../../store/formDataSlice";
+import styles from '../../styles/sign-up.module.css'
 
 const steps = [
   "About You",
@@ -32,7 +33,7 @@ const textInputSx = {
 };
 
 export default function HorizontalLinearStepper() {
-  const [formData, updateFormData] = React.useState({});
+  // const [formData, updateFormData] = React.useState({});
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const [showCaptcha, updateShowCaptcha] = React.useState(false);
@@ -40,6 +41,8 @@ export default function HorizontalLinearStepper() {
   const [captchaPass, updateCaptchaPass] = React.useState(false);
   const router = useRouter();
   const captchaState = useSelector(selectCaptchaState);
+  const formDataState = useSelector(selectFormDataState);
+  console.log('formdata', formDataState)
   const dispatch = useDispatch();
   const isStepOptional = (step) => {
     //return step === 1;
@@ -85,10 +88,10 @@ export default function HorizontalLinearStepper() {
     });
   };
 
-  const onChange = (e) => {
-    const newFormData = { ...formData, [e.target.id]: e.target.value };
-    updateFormData(newFormData);
-  };
+  const onChange= (e) => {
+    const newFormData = { ...formDataState, [e.target.id]: e.target.value }
+    dispatch(setFormDataState(newFormData))
+  }
 
   const onChangeCaptcha = async (value) => {
     const response = await fetch('/api/captchaVerify', {
