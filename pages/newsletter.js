@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { selectCaptchaState, setCaptchaState } from "../store/captchaSlice";
 import { selectFormDataState, setFormDataState } from "../store/formDataSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress } from "@mui/material/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Newsletter({ switchRenderNewsletter }) {
   const [gptNewsletter, updateGPTNewsletter] = useState({})
@@ -39,7 +39,9 @@ export default function Newsletter({ switchRenderNewsletter }) {
     </div>
       <main className={styles.newsletterMain}>
         <div className={styles.newsletterCenter}>
-            <h1 className={styles.title}>
+          { Object.keys(gptNewsletter).length > 0 ? (
+          <div>
+          <h1 className={styles.title}>
             {gptNewsletter?.title}
           </h1>
           <div className={styles.paper}>
@@ -98,6 +100,8 @@ export default function Newsletter({ switchRenderNewsletter }) {
               Q of the Day: &quot;{ gptNewsletter?.question }&quot;. Tag {formDataState?.companyTwitterHandle} to be featured!
             </p>
           </div>
+          </div>
+        ) : <CircularProgress /> }
         </div>
       </main>
     </>
