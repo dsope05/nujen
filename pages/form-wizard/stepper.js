@@ -224,6 +224,13 @@ export default function HorizontalLinearStepper() {
                 />
                 <TextField
                   onChange={onChange}
+                  id="writingSample"
+                  label="Writing Sample"
+                  variant="outlined"
+                  sx={textInputSx}
+                />
+                <TextField
+                  onChange={onChange}
                   id="obsessions"
                   label="1-2 Obsessions"
                   variant="outlined"
@@ -469,8 +476,8 @@ export default function HorizontalLinearStepper() {
                 <br />
                 <h2>Learn</h2>
                 <br />
-                Share 3 articles related to your topics: {formData.topic1},{" "}
-                {formData.topic2}, & {formData.topic3}.
+                Share 3 articles related to your topics: {formDataState?.topic1},{" "}
+                {formDataState?.topic2}, & {formDataState?.topic3}.
                 <br />
                 <br />
                 <h3>Article #1</h3>

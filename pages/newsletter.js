@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { selectCaptchaState, setCaptchaState } from "../store/captchaSlice";
 import { selectFormDataState, setFormDataState } from "../store/formDataSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress } from "@mui/material/CircularProgress";
 
 export default function Newsletter({ switchRenderNewsletter }) {
   const [gptNewsletter, updateGPTNewsletter] = useState({})
@@ -38,8 +39,8 @@ export default function Newsletter({ switchRenderNewsletter }) {
     </div>
       <main className={styles.newsletterMain}>
         <div className={styles.newsletterCenter}>
-          <h1 className={styles.title}>
-            Title
+            <h1 className={styles.title}>
+            {gptNewsletter?.title}
           </h1>
           <div className={styles.paper}>
             <h2 className={styles.newsletterFirstSectionHeader}>
@@ -57,8 +58,44 @@ export default function Newsletter({ switchRenderNewsletter }) {
             <h2 className={styles.newsletterSectionHeader}>
               3-2-1: Learn, Celebrate & Do
             </h2>
-            <p style={{ lineHeight: 1.5, fontSize: 18 }}>
-              { gptNewsletter?.article1?.response }
+            <p style={{ lineHeight: 1.5, fontSize: 18, marginBottom: '10px' }}>
+              1. &quot;{formDataState?.article1Title}&quot; by {formDataState?.article1Author}
+              <p>
+                { gptNewsletter?.article1?.response }
+              </p>
+            </p>
+            <p style={{ lineHeight: 1.5, fontSize: 18, marginBottom: '10px' }}>
+              2. &quot;{formDataState?.article2Title}&quot; by {formDataState?.article2Author}
+              <p>
+                { gptNewsletter?.article2?.response }
+              </p>
+            </p>
+            <p style={{ lineHeight: 1.5, fontSize: 18, marginBottom: '10px' }}>
+              3. &quot;{formDataState?.article3Title}&quot; by {formDataState?.article3Author}
+              <p>
+                { gptNewsletter?.article3?.response }
+              </p>
+            </p>
+            <h2 className={styles.newsletterSectionHeader}>
+              Celebrate
+            </h2>
+            <p style={{ lineHeight: 1.5, fontSize: 18, marginBottom: '10px' }}>
+              1. {formDataState?.member1Name} {formDataState?.member1TwitterHandle}
+              <p>
+                { gptNewsletter?.celebrate1?.response }
+              </p>
+            </p>
+            <p style={{ lineHeight: 1.5, fontSize: 18, marginBottom: '10px' }}>
+              2. {formDataState?.member2Name} {formDataState?.member2TwitterHandle}
+              <p>
+                { gptNewsletter?.celebrate2?.response }
+              </p>
+            </p>
+            <h2 className={styles.newsletterSectionHeader}>
+              Do
+            </h2>
+            <p style={{ lineHeight: 1.5, fontSize: 18, marginBottom: '10px' }}>
+              Q of the Day: &quot;{ gptNewsletter?.question }&quot;. Tag {formDataState?.companyTwitterHandle} to be featured!
             </p>
           </div>
         </div>
