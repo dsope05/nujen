@@ -64,10 +64,10 @@ export default function Home() {
         </div>
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Your fave newsletter generator.
+            Newsletter Generator for your Brand Community
           </h1>
           <h3 className={styles.description}>
-            { "Whether it's a personal, community, or company newsletter, nujen can make it for you."}
+            Nujen AI gives forward-thinking brand communities the tools to create newsletters worth reading, engaging with, and sharing.
           </h3>
           <div className={styles.homepageBtnContainer}>
             <Button variant="contained" sx={{
