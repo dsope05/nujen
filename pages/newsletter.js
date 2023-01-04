@@ -8,6 +8,7 @@ import { selectCaptchaState, setCaptchaState } from "../store/captchaSlice";
 import { selectFormDataState, setFormDataState } from "../store/formDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
+import { createNewsletterRecord } from "../airtable/airtable";
 
 export default function Newsletter({ switchRenderNewsletter }) {
   const [gptNewsletter, updateGPTNewsletter] = useState({})
@@ -19,6 +20,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
       body: JSON.stringify(formDataState)
     }).then(res => res.json()).then((chatGPTResponse) => {
       updateGPTNewsletter(chatGPTResponse)
+      createNewsletterRecord(formDataState?.email, JSON.stringify(chatGPTResponse))
     })
   }, [])
   console.log('authSTATE newlsetter', authState)
