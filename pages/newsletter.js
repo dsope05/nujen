@@ -18,7 +18,6 @@ export default function Newsletter({ switchRenderNewsletter }) {
       method: 'POST',
       body: JSON.stringify(formDataState)
     }).then(res => res.json()).then((chatGPTResponse) => {
-      console.log('chatGPTResponse', chatGPTResponse)
       updateGPTNewsletter(chatGPTResponse)
     })
   }, [])
@@ -101,7 +100,11 @@ export default function Newsletter({ switchRenderNewsletter }) {
             </p>
           </div>
           </div>
-        ) : <CircularProgress /> }
+        ) : (
+        <div className={styles.loadingSpinner}>
+          <CircularProgress />
+        </div>
+        )}
         </div>
       </main>
     </>
