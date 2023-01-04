@@ -12,10 +12,11 @@ export default async function handler(req, res) {
         response: value,
       })
     }).then(res => res.json()).then((res) => {
+      console.log('res', res)
       if (res.success === true) {
         res.status(200).json({ success: true })
       } else {
-        res.status(500).json({ success: fase })
+        res.status(500).json({ success: false })
       }
     })
 
