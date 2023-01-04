@@ -35,7 +35,6 @@ export default function HorizontalLinearStepper() {
   const router = useRouter()
   const captchaState = useSelector(selectCaptchaState);
   const dispatch = useDispatch();
-  console.log('captchastate', captchaState)
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -88,18 +87,15 @@ export default function HorizontalLinearStepper() {
   }
 
   const onChangeCaptcha = async (value) => {
-    const response = await fetch(process.env.CAPTCHA_URL, {
+    const response = await fetch('/api/captchaVerify', {
       method: 'POST',
       body: JSON.stringify({
-        secret: process.env.CAPTCHA_SECRET,
-        response: value,
+        value
       })
     }).then(res => res.json())
-      console.log('response', response)
       if (response?.success === true) {
         dispatch(setCaptchaState(true))
-        console.log('successsssss', response)
-        setTimeout(() => router.push('/newsletter'), 5000)
+        router.push('/newsletter')
       }
   }
 
@@ -117,7 +113,7 @@ export default function HorizontalLinearStepper() {
       Newsletter Generator
     </div>
       <Box sx={{ width: '100%' }}>
-        { showModal && !captchaState && (
+        { !captchaState && (
           <Modal
             open={showModal}
             onClose={handleClose}
