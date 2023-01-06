@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     SITE_KEY: process.env.SITE_KEY,
     ENV: process.env.ENV,
