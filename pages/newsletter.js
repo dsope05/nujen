@@ -14,17 +14,27 @@ export default function Newsletter({ switchRenderNewsletter }) {
   const [gptNewsletter, updateGPTNewsletter] = useState({})
   const authState = useSelector(selectCaptchaState);
   const formDataState = useSelector(selectFormDataState);
+
   useEffect(() => {
-    fetch('/api/completion', {
-      method: 'POST',
-      body: JSON.stringify(formDataState)
-    }).then(res => res.json()).then((chatGPTResponse) => {
-      updateGPTNewsletter(chatGPTResponse)
-      createNewsletterRecord(formDataState?.email, JSON.stringify(chatGPTResponse))
-    })
+    // pass in twitterHandle from formDataState
+    const generateNewsletter = async () => {
+      const tweets = await fetch('/api/tweets', {
+        method: 'POST',
+        body: JSON.stringify({ twitterHandle: 'mixednutssss'})
+      })
+      .then((res) => res.json())
+
+      // pass in tweets to completion API here along with any necessary formData
+      fetch('/api/completion', {
+        method: 'POST',
+        body: JSON.stringify(formDataState)
+      }).then(res => res.json()).then((chatGPTResponse) => {
+        updateGPTNewsletter(chatGPTResponse)
+        createNewsletterRecord(formDataState?.email, JSON.stringify(chatGPTResponse))
+      })
+    }
+    generateNewsletter();
   }, [])
-  console.log('authSTATE newlsetter', authState)
-  console.log('form Data State newsletter', formDataState)
 
   const router = useRouter()
   const goBack = () => {
