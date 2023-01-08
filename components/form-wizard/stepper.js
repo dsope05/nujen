@@ -28,6 +28,7 @@ const textInputSxLong = {
   marginBottom: "10px",
   width: "70%",
   minWidth: "300px",
+  fontFamily: "Nunito Sans",
 };
 
 const textInputSx = {
@@ -35,6 +36,7 @@ const textInputSx = {
   marginBottom: "10px",
   width: "30%",
   minWidth: "300px",
+  fontFamily: "Nunito Sans",
 };
 
 const multiLineTextInputSx = {
@@ -42,6 +44,7 @@ const multiLineTextInputSx = {
   marginBottom: "10px",
   width: "70%",
   minWidth: "300px",
+  fontFamily: "Nunito Sans",
 };
 
 export default function HorizontalLinearStepper() {
@@ -265,8 +268,9 @@ export default function HorizontalLinearStepper() {
                   <br />
                   <br />
                   <b>Basic, boring purpose, but at least you’re trying: </b>
-                  We want n&w s2 members to learn about projects, wins, learnings, or
-                  opportunities that other members are experiencing.
+                  We want n&w s2 members to learn about projects, wins,
+                  learnings, or opportunities that other members are
+                  experiencing.
                   <br />
                   <br />
                   🤔 <i>WHY do you want that?</i>
