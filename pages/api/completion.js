@@ -52,8 +52,5 @@ Now you're ready. Write the newsletter, in my own writing style, in HTML.`;
 
   const newsletterHTMLResponse = await completionApi(`${promptForHTML}`);
   const newsletterHTML = newsletterHTMLResponse?.data?.choices?.[0]?.text || '<div> Sorry, there was an error with your request! </div>';
-  if (newsletterHTMLResponse.data.error) {
-    console.log('error', newsletterHTMLResponse.data.error)
-  }
-  response.status(200).json(newsletterHTML);
+  response.status(200).json({ res: newsletterHTML });
 }

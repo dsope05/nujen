@@ -52,10 +52,11 @@ export default function Newsletter({ switchRenderNewsletter }) {
     })
       .then((res) => res.json())
       .then((chatGPTResponse) => {
-        updateGPTNewsletter(chatGPTResponse);
+        console.log('chatGPTResponse', chatGPTResponse)
+        updateGPTNewsletter(chatGPTResponse?.res);
         createNewsletterRecord(
           formDataState?.email,
-          JSON.stringify(chatGPTResponse)
+          JSON.stringify(chatGPTResponse?.res)
         );
       });
   };
