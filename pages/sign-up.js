@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../styles/sign-up.module.css";
 import StepWizard from "react-step-wizard";
 import dynamic from "next/dynamic";
-import Stepper from "./form-wizard/stepper";
+import Stepper from "../components/form-wizard/stepper";
 import { useRouter } from "next/router";
 
 export default function Signup() {
@@ -22,7 +22,7 @@ export default function Signup() {
             fontSize: "24px",
           }}
         >
-          Nujen
+          nujen
         </h3>
       </div>
       <div className={styles.main}>

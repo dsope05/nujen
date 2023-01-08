@@ -12,17 +12,16 @@ import { style } from "@mui/system";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCaptchaState, setCaptchaState } from "../../store/captchaSlice";
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import {
   selectFormDataState,
   setFormDataState,
 } from "../../store/formDataSlice";
 import styles from "../../styles/sign-up.module.css";
 
-const steps = [
-  "About You / The Author",
-  "About the Company",
-  "About the Newsletter",
-];
+const steps = ["About You (The Author)", "About the Newsletter", "For nujen"];
 
 const textInputSxLong = {
   backgroundColor: "white",
@@ -48,6 +47,8 @@ const multiLineTextInputSx = {
 export default function HorizontalLinearStepper() {
   // const [formData, updateFormData] = React.useState({});
   const [activeStep, setActiveStep] = React.useState(0);
+  const [hashtagState, setHashtagState] = React.useState(false);
+  const [mentionState, setMentionState] = React.useState(false);
   const [skipped, setSkipped] = React.useState(new Set());
   const [showCaptcha, updateShowCaptcha] = React.useState(false);
   const [showModal, updateShowModal] = React.useState(false);
@@ -55,7 +56,6 @@ export default function HorizontalLinearStepper() {
   const router = useRouter();
   const captchaState = useSelector(selectCaptchaState);
   const formDataState = useSelector(selectFormDataState);
-  console.log("formdata", formDataState);
   const dispatch = useDispatch();
   if (process.env.ENV === "dev") {
     //dispatch();
@@ -134,8 +134,8 @@ export default function HorizontalLinearStepper() {
     <>
       <div className={styles.title}>Newsletter Generator</div>
       <div className={styles.tagline}>
-      nujen v1 will generate a newsletter (in HTML) for your brand community, based on
-      specific, hashtagged tweets you&apos;ve liked.
+        nujen v1 will generate a newsletter for your brand community, based on
+        specific tweets you&apos;ve liked.
       </div>
       <br />
       <br />
@@ -187,76 +187,52 @@ export default function HorizontalLinearStepper() {
                 <br />
                 <TextField
                   onChange={onChange}
-                  id="email"
-                  label="Email"
-                  placeholder="seemcat@gmail.com"
-                  variant="outlined"
-                  sx={textInputSx}
-                  defaultValue={formDataState?.email || ""}
-                />
-                <TextField
-                  onChange={onChange}
                   id="firstName"
                   label="First Name"
-                  placeholder="Mari"
+                  placeholder="Farza"
                   variant="outlined"
                   sx={textInputSx}
                   defaultValue={formDataState?.firstName || ""}
                 />
                 <TextField
                   onChange={onChange}
-                  id="lastName"
-                  label="Last Name"
-                  placeholder="Soper"
+                  id="email"
+                  label="Email"
+                  placeholder="farza@gmail.com"
                   variant="outlined"
                   sx={textInputSx}
-                  defaultValue={formDataState?.lastName || ""}
+                  defaultValue={formDataState?.email || ""}
+                />
+                <TextField
+                  onChange={onChange}
+                  id="twitterHandle"
+                  label="Your Twitter Handle"
+                  placeholder="FarzaTV"
+                  variant="outlined"
+                  sx={textInputSx}
+                  defaultValue={formDataState?.twitterHandle || ""}
                 />
                 <TextField
                   onChange={onChange}
                   id="title"
                   label="Title"
-                  placeholder="Head of Community"
+                  placeholder="Founder"
                   variant="outlined"
                   sx={textInputSx}
                   defaultValue={formDataState?.title || ""}
                 />
                 <TextField
                   onChange={onChange}
-                  id="twitterHandle"
-                  label="Twitter Handle"
-                  placeholder="seemcat"
-                  variant="outlined"
-                  sx={textInputSx}
-                  defaultValue={formDataState?.twitterHandle || ""}
-                />
-              </div>
-            )}
-            {activeStep === 1 && (
-              <div className={styles.stepperContainer}>
-                <h1>About the Company</h1>
-                <br />
-                <TextField
-                  onChange={onChange}
                   id="company"
-                  label="Name"
-                  placeholder="WOMEN IN WEB3"
+                  label="Company Name"
+                  placeholder="buildspace"
                   variant="outlined"
                   sx={textInputSx}
                   defaultValue={formDataState?.company || ""}
                 />
-                <TextField
-                  onChange={onChange}
-                  id="companyTwitterHandle"
-                  label="Twitter Handle"
-                  placeholder="womeninweb3"
-                  variant="outlined"
-                  sx={textInputSx}
-                  defaultValue={formDataState?.companyTwitterHandle || ""}
-                />
               </div>
             )}
-            {activeStep === 2 && (
+            {activeStep === 1 && (
               <div className={styles.stepperContainer}>
                 <div>
                   <h2>
@@ -273,8 +249,7 @@ export default function HorizontalLinearStepper() {
                   belief or value.
                   <br />
                   <br />
-                  For example - I’m writing a newsletter for the WOMEN IN WEB3
-                  brand community.
+                  <b>For example</b> - let&apos;s say <u>Farza</u> is writing a newsletter.
                   <br />
                   <br />
                   <b>Newsletter type:</b> Weekly Digest
@@ -283,14 +258,15 @@ export default function HorizontalLinearStepper() {
                   <b>
                     Your purpose is a category (i.e., you don’t have a purpose):
                   </b>{" "}
-                  To help members learn about other members.
+                  To help n&w s2 members learn about other members.
                   <br />
                   <br />
                   🤔 <i>WHY help members learn about one another?</i>
                   <br />
                   <br />
                   <b>Basic, boring purpose, but at least you’re trying: </b>
-                  We want members to learn about projects, wins, learnings, or opportunities that other members are experiencing.
+                  We want n&w s2 members to learn about projects, wins, learnings, or
+                  opportunities that other members are experiencing.
                   <br />
                   <br />
                   🤔 <i>WHY do you want that?</i>
@@ -300,7 +276,8 @@ export default function HorizontalLinearStepper() {
                     Your purpose is specific, unique, and disputable (multiple
                     alternatives):
                   </b>{" "}
-                  To inspire members to keep going in their web3 entrepreneurial journeys by highlighting other members who are on a similar path.
+                  To inspire n&w s2 members to keep building, launching,
+                  measuring and learning - so that we can all win together.
                   <br />
                   <br />
                   <i>That&apos;s more like it. Now it&apos;s your turn!</i>
@@ -311,7 +288,7 @@ export default function HorizontalLinearStepper() {
                   onChange={onChange}
                   id="purpose"
                   label="Specific, Unique & Disputable Purpose"
-                  placeholder="To inspire members to keep going in their web3 entrepreneurial journeys by highlighting other members who are on a similar path."
+                  placeholder="To inspire n&w s2 members to keep building, launching, measuring and learning - so that we can all win together."
                   variant="outlined"
                   rows={2}
                   multiline
@@ -327,8 +304,8 @@ export default function HorizontalLinearStepper() {
                 <TextField
                   onChange={onChange}
                   id="readers"
-                  label="Readers"
-                  placeholder="Existing or prospective members of WOMEN IN WEB3"
+                  label="Very specific set of readers"
+                  placeholder="Members of Nights & Weekend Season 2"
                   variant="outlined"
                   rows={2}
                   multiline
@@ -336,41 +313,80 @@ export default function HorizontalLinearStepper() {
                   defaultValue={formDataState?.readers || ""}
                 />
                 <br />
+              </div>
+            )}
+            {activeStep === 2 && (
+              <div className={styles.stepperContainer}>
+                <h1>For nujen</h1>
+                <br />
+                <h2>How many tweets do you want to feature?</h2>
+                <br />
+                <TextField
+                  onChange={onChange}
+                  id="numOfTweets"
+                  label="# of Featured Tweets"
+                  placeholder="10"
+                  variant="outlined"
+                  sx={textInputSx}
+                  defaultValue={formDataState?.numOfTweets || ""}
+                />
+                <br />
                 <h2>Give a tagline for the list of featured tweets.</h2>
                 <br />
-                This tagline should tell us the # of tweets you want us to
-                feature.
+                This tagline should include the # of tweets you want us to
+                feature. e.g. Top 10 Builds
                 <br />
                 <br />
                 <TextField
                   onChange={onChange}
                   id="tagline"
                   label="Tagline"
-                  placeholder="7 Highlights from Women in Web3"
+                  placeholder="Top 10 Builds"
                   variant="outlined"
-                  rows={2}
-                  multiline
-                  sx={textInputSxLong}
+                  sx={textInputSx}
                   defaultValue={formDataState?.tagline || ""}
                 />
                 <br />
                 <h2>
-                  Share the Twitter hashtag that can help us find members to
-                  feature.
+                  How can nujen find these tweets?
                 </h2>
                 <br />
+                <FormGroup sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}>
+                  <FormControlLabel control={<Checkbox onChange={() => setHashtagState(!hashtagState)}/>} label="#hashtag" />
+                  <FormControlLabel control={<Checkbox onChange={() => setMentionState(!mentionState)}/>} label="@mention" />
+                </FormGroup>
+                <br />
+                { mentionState && (
+                  <TextField
+                    onChange={onChange}
+                    id="mention"
+                    label="@mention"
+                    placeholder="@_buildspace"
+                    variant="outlined"
+                    sx={textInputSx}
+                    defaultValue={formDataState?.mention || ""}
+                  />
+                )}
+                { hashtagState && (
                 <TextField
                   onChange={onChange}
                   id="hashtag"
-                  label="Hashtag"
-                  placeholder="#wiw3nujen"
+                  label="#hashtag"
+                  placeholder="#nws2"
                   variant="outlined"
-                  rows={2}
-                  multiline
-                  sx={textInputSxLong}
+                  sx={textInputSx}
                   defaultValue={formDataState?.hashtag || ""}
                 />
+                )}
                 <br />
+                <p className={styles.okText}>
+                  { (mentionState && !hashtagState) && `✽ OK, we'll look for tweets that mention ${formDataState?.mention || '________'}`}
+                  { (!mentionState && hashtagState) && `✽ OK, we'll look for tweets that have hashtag ${formDataState?.hashtag || '________'}`}
+                  { (mentionState && hashtagState) && ` ✽ OK, we'll look for tweets that mention ${formDataState?.mention || '________'} AND have hashtag ${formDataState?.hashtag || '________'}`}
+                </p>
               </div>
             )}
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>

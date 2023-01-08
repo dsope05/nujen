@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
-import gptMockResponse from "../mocks/gptMockResponse.json";
+//import gptMockResponse from "../../components/mocks/gptMockResponse.json";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -17,7 +17,7 @@ const completionApi = (prompt) => {
 
 export default async function handler(request, response) {
   if (process.env.ENV === "dev") {
-    return response.status(200).json(gptMockResponse);
+//    return response.status(200).json(gptMockResponse);
   }
   const formData = JSON.parse(request.body);
   console.log("formData api", formData);

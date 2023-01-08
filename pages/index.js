@@ -43,7 +43,6 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Analytics />
       <div className={styles.header}>
@@ -55,7 +54,7 @@ export default function Home() {
             fontSize: "24px",
           }}
         >
-          Nujen
+          nujen
         </h3>
         <Hidden smDown>
           <Button
@@ -77,7 +76,7 @@ export default function Home() {
           Newsletter Generator for your Brand Community
         </h1>
         <h3 className={styles.description}>
-          Nujen AI gives forward-thinking brand communities the tools to create
+          nujen AI gives forward-thinking brand communities the tools to create
           newsletters worth reading, engaging with, and sharing.
         </h3>
         <div className={styles.homepageBtnContainer}>
@@ -112,7 +111,7 @@ export default function Home() {
       </main>
       <div className={styles.whySection}>
         <div className={styles.whyLeft}>
-          Why <span className={styles.green}> Nujen? </span>
+          Why <span className={styles.green}>nujen?</span>
           <ul className={styles.whyNujenList}>
             <li className={styles.bulletList}>
               Save time

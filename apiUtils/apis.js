@@ -9,7 +9,7 @@ export const getTwitterUserId = (twitterHandle) => {
 }
 
 export const getLikedTweets = (userId) => {
-  return fetch(`https://api.twitter.com/2/users/${userId}/liked_tweets?max_results=100&expansions=author_id`, {
+  return fetch(`https://api.twitter.com/2/users/${userId}/liked_tweets?max_results=100&expansions=author_id&tweet.fields=created_at`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${process.env.TWITTER_BEARER}`
