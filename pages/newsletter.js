@@ -170,6 +170,12 @@ export default function Newsletter({ switchRenderNewsletter }) {
           </>
         ) : (
         <div className={styles.loadingSpinner}>
+          <h1 style={{ marginBottom: '20px'}}>
+            Generating your newsletter
+          </h1>
+          <h1 style={{ marginBottom: '40px'}}>
+            This can take up to 30 seconds...
+          </h1>
           <CircularProgress />
         </div>
         )}
