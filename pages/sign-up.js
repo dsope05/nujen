@@ -22,7 +22,7 @@ export default function Signup() {
             fontSize: "24px",
           }}
         >
-          Nujen
+          nujen
         </h3>
       </div>
       <div className={styles.main}>

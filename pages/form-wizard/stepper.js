@@ -18,7 +18,7 @@ import {
 } from "../../store/formDataSlice";
 import styles from "../../styles/sign-up.module.css";
 
-const steps = ["About You (The Author)", "About the Newsletter", "For Nujen"];
+const steps = ["About You (The Author)", "About the Newsletter", "For nujen"];
 
 const textInputSxLong = {
   backgroundColor: "white",
@@ -313,7 +313,7 @@ export default function HorizontalLinearStepper() {
             )}
             {activeStep === 2 && (
               <div className={styles.stepperContainer}>
-                <h1>For Nujen</h1>
+                <h1>For nujen</h1>
                 <br />
                 <h2>How many tweets do you want to feature?</h2>
                 <br />

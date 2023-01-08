@@ -12,30 +12,28 @@ import { createNewsletterRecord } from "../airtable/airtable";
 import dynamic from "next/dynamic";
 import Button from "@mui/material/Button";
 import newsletterMock from "./mocks/gptMockResponse";
-import SmartToyIcon from '@mui/icons-material/SmartToy';
+import SmartToyIcon from "@mui/icons-material/SmartToy";
 import Snackbar from "@mui/material/Snackbar";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-
-const JoditWrapper = dynamic(() => import('../components/JoditWrapper'), {
-  ssr: false
-})
+const JoditWrapper = dynamic(() => import("../components/JoditWrapper"), {
+  ssr: false,
+});
 
 export default function Newsletter({ switchRenderNewsletter }) {
-  const [gptNewsletter, updateGPTNewsletter] = useState(newsletterMock);
+  const [gptNewsletter, updateGPTNewsletter] = useState("");
   const [copied, updateCopiedState] = useState(false);
   const authState = useSelector(selectCaptchaState);
   const formDataState = useSelector(selectFormDataState);
 
   const editNewsletter = (e) => {
     updateGPTNewsletter(e);
-  }
+  };
 
   // Generate the nujen newsletter
   const generateNewsletter = async () => {
-    /*
     // Twitter Integration
     const tweets = await fetch("/api/tweets", {
       method: "POST",
@@ -60,7 +58,6 @@ export default function Newsletter({ switchRenderNewsletter }) {
           JSON.stringify(chatGPTResponse)
         );
       });
-  */
   };
   generateNewsletter();
 
@@ -69,12 +66,9 @@ export default function Newsletter({ switchRenderNewsletter }) {
     router.push("/");
   };
 
-  console.log("Nujen Newsletter: ", gptNewsletter);
+  console.log("nujen Newsletter: ", gptNewsletter);
   console.log("gptNewsletter: ", gptNewsletter);
 
-
-/*
-  */
   const snackAction = (
     <React.Fragment>
       <IconButton
@@ -105,14 +99,14 @@ export default function Newsletter({ switchRenderNewsletter }) {
             fontSize: "24px",
           }}
         >
-          Nujen
+          nujen
         </h3>
       </div>
       <main className={styles.newsletterMain}>
         <div className={styles.newsletterCenter}>
           <div className={styles.paper}>
             <h3 className={styles.newsletterWelcome}>
-              { `Here's your nujen newsletter!`}
+              {`Your nujen newsletter's ready.`}
             </h3>
             <div className={styles.newsletterButtons}>
               <Snackbar
@@ -123,39 +117,49 @@ export default function Newsletter({ switchRenderNewsletter }) {
                 action={snackAction}
               />
               <span className={styles.btnSpan}>
-                <CopyToClipboard text={gptNewsletter}
-                  onCopy={() => updateCopiedState(true)}>
-                  <Button
-                    variant="outlined"
-                  >
-                  <span className={styles.roboEmoji}> 🤖 </span>
-                  Copy HTML
+                <CopyToClipboard
+                  text={gptNewsletter}
+                  onCopy={() => updateCopiedState(true)}
+                >
+                  <Button variant="outlined">
+                    <span className={styles.roboEmoji}> 🤖 </span>
+                    Copy HTML
                   </Button>
                 </CopyToClipboard>
               </span>
               <span className={styles.btnSpan}>
-                <Button
-                  variant="outlined"
-                  >
+                <Button variant="outlined">
                   <span className={styles.roboEmoji}> 💛 </span>
-                    Show us some love
+                  <a
+                    class="twitter-share-button"
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://twitter.com/intent/tweet?text=🤖%20Generated%20my%20first%20@nujen_ai%20newsletter!%0a%0a<ATTACH_SCREENSHOT_OF_NUJEN>%0a%0acc%20@_buildspace"
+                    data-size="large"
+                  >
+                    Plz Support us
+                  </a>
                 </Button>
               </span>
               <span className={styles.btnSpan}>
-              <Button
-                variant="outlined"
-                >
-                 <span className={styles.roboEmoji}> ⛰️ </span>
-                 View our roadmap
+                <Button variant="outlined">
+                  <span className={styles.roboEmoji}> ⛰️ </span>
+                  <a
+                    rel="noreferrer"
+                    target="_blank"
+                    href="https://nujen.canny.io/"
+                    data-size="large"
+                  >
+                    View our roadmap
+                  </a>
                 </Button>
               </span>
             </div>
             {Object.keys(gptNewsletter).length > 0 ? (
-              <>
-                <JoditWrapper editNewsletter={editNewsletter} gptNewsletter={gptNewsletter}/>
-                <h1>Copy the HTML 👇</h1>
-                <div>{gptNewsletter}</div>
-              </>
+              <JoditWrapper
+                editNewsletter={editNewsletter}
+                gptNewsletter={gptNewsletter}
+              />
             ) : (
               <div className={styles.loadingSpinner}>
                 <CircularProgress />
