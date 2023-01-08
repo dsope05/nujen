@@ -43,7 +43,11 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script type="text/javascript" src="build/jodit.es2018.min.js" async></script>
+        <script
+          type="text/javascript"
+          src="build/jodit.es2018.min.js"
+          async
+        ></script>
       </Head>
       <Analytics />
       <div className={styles.header}>
@@ -65,10 +69,11 @@ export default function Home() {
               marginLeft: "auto",
               color: "#333",
               border: "1px solid #333",
+              fontFamily: "Nunito Sans",
             }}
             onClick={handleClick}
           >
-            Generate Your First Free Newsletter
+            Create Your 1st Free Newsletter
           </Button>
         </Hidden>
       </div>
@@ -78,7 +83,7 @@ export default function Home() {
         </h1>
         <h3 className={styles.description}>
           nujen AI gives forward-thinking brand communities the tools to create
-          newsletters worth reading, engaging with, and sharing.
+          newsletters worth reading, sharing, and engaging with.
         </h3>
         <div className={styles.homepageBtnContainer}>
           <Button
@@ -87,16 +92,18 @@ export default function Home() {
               backgroundColor: "green",
               color: "white",
               marginTop: "10px",
+              fontFamily: "Nunito Sans",
             }}
             onClick={handleClick}
           >
-            Generate Your First Free Newsletter
+            Create Your 1st Free Newsletter
           </Button>
           <Button
             variant="text"
             sx={{
               marginTop: "10px",
               padding: "12px",
+              fontFamily: "Nunito Sans",
             }}
           >
             <a
@@ -117,21 +124,19 @@ export default function Home() {
             <li className={styles.bulletList}>
               Save time
               <p className={styles.bulletDesc}>
-                Cut your newsletter writing time by 90%.
+                Cut newsletter writing time by 90% so that you can spend more time creating value or fostering deeper bonds among members.
               </p>
             </li>
             <li className={styles.bulletList}>
               Customize
               <p className={styles.bulletDesc}>
-                Create a newsletter that aligns with your brand identity and
-                voice.
+                Create a newsletter that aligns with your brand identity.
               </p>
             </li>
             <li className={styles.bulletList}>
-              Build Community
+              Nurture & Scale Community
               <p className={styles.bulletDesc}>
-                Send newsletters worth opening, reading & engaging with, and
-                contributing to.
+                Help members feel belonging, and drive awareness by sending newsletters worth reading, sharing and engaging with.
               </p>
             </li>
           </ul>
@@ -162,7 +167,11 @@ export default function Home() {
               href="https://www.canva.com/design/DAFWAjyKI90/_5d2RsYq0aunDcz7yidgdg/view?website#4"
               target="_blank"
               rel="noreferrer"
-              style={{ textDecoration: "none", color: "#333" }}
+              style={{
+                textDecoration: "none",
+                color: "#333",
+                fontFamily: "Nunito Sans",
+              }}
             >
               View Sample Newsletter
             </a>
@@ -185,11 +194,22 @@ export default function Home() {
               padding: "10px",
               color: "white",
               marginTop: "10px",
+              fontFamily: "Nunito Sans",
             }}
           >
-            Generate Your First Free Newsletter
+            Create Your 1st Free Newsletter
           </Button>
         </div>
+      </div>
+      <div className={styles.subscribe}>
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href="https://sunny-composer-9928.ck.page/bb8f06e58f"
+          data-size="large"
+        >
+          Subscribe to our nujen-generated newsletter!
+        </a>
       </div>
     </>
   );

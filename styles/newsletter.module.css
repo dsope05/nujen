@@ -1,4 +1,4 @@
-.sampleNewsletterText{
+.sampleNewsletterText {
   display: flex;
   justify-content: center;
 }
@@ -10,13 +10,13 @@
   min-height: 100vh;
 }
 
- .header {
-   width: 100%;
-   height: 60px;
-   color: white;
-   display: flex;
-   align-items: center;
- }
+.header {
+  width: 100%;
+  height: 60px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
 
 .newsletterCenter {
   width: 60%;
@@ -27,7 +27,7 @@
   display: flex;
   justify-content: center;
   font-size: 64px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Nunito Sans'
 }
 
 .newsletterFirstSectionHeader {
@@ -68,6 +68,7 @@
   .btnSpan {
     margin: 10px;
   }
+
   .newsletterButtons {
     display: flex;
     flex-wrap: wrap;
@@ -76,9 +77,11 @@
     font-size: 32px;
     margin: 15px;
   }
+
   .newsletterCenter {
     width: 100%;
   }
+
   .newsletterMain {
     display: flex;
     justify-content: center;
@@ -86,10 +89,12 @@
     min-height: 100vh;
   }
 }
+
 @media (min-width: 450px) and (max-width: 1100px) {
   .btnSpan {
     margin: 10px;
   }
+
   .newsletterButtons {
     display: flex;
     flex-wrap: wrap;
@@ -98,6 +103,7 @@
     font-size: 32px;
     margin: 15px;
   }
+
   .newsletterCenter {
     width: 90%;
   }
