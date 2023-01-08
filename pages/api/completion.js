@@ -55,6 +55,5 @@ Now you're ready. Write the newsletter, in my own writing style, in HTML.`;
   if (newsletterHTMLResponse.data.error) {
     console.log('error', newsletterHTMLResponse.data.error)
   }
-  console
   response.status(200).json(newsletterHTML);
 }
