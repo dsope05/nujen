@@ -74,7 +74,7 @@ export default function Home() {
       </div>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Connect Your Company's Twitter & Get a Newsletter in Seconds
+          Connect Your Company&apos;s Twitter & Get a Newsletter in Seconds
         </h1>
         <h3 className={styles.description}>
           A newsletter generator that helps you nurture and scale your brand
