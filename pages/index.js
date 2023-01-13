@@ -68,17 +68,17 @@ export default function Home() {
             }}
             onClick={handleClick}
           >
-            Create Your 1st Free Newsletter
+            Get started for free
           </Button>
         </Hidden>
       </div>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Newsletter Generator for your Brand Community
+          Connect Your Company's Twitter & Get a Newsletter in Seconds
         </h1>
         <h3 className={styles.description}>
-          nujen AI gives forward-thinking brand communities the tools to create
-          newsletters worth reading, sharing, and engaging with.
+          A newsletter generator that helps you nurture and scale your brand
+          community.
         </h3>
         <div className={styles.homepageBtnContainer}>
           <Button
@@ -91,7 +91,7 @@ export default function Home() {
             }}
             onClick={handleClick}
           >
-            Create Your 1st Free Newsletter
+            Get started for free{" "}
           </Button>
           <Button
             variant="text"
@@ -119,7 +119,8 @@ export default function Home() {
             <li className={styles.bulletList}>
               Save time
               <p className={styles.bulletDesc}>
-                Cut newsletter writing time by 90% so that you can spend more time creating value or fostering deeper bonds among members.
+                Cut newsletter writing time by 90% so that you can spend more
+                time creating value or fostering deeper bonds among members.
               </p>
             </li>
             <li className={styles.bulletList}>
@@ -131,7 +132,8 @@ export default function Home() {
             <li className={styles.bulletList}>
               Nurture & Scale Community
               <p className={styles.bulletDesc}>
-                Help members feel belonging, and drive awareness by sending newsletters worth reading, sharing and engaging with.
+                Help members feel belonging, and drive awareness by sending
+                newsletters worth reading, sharing and engaging with.
               </p>
             </li>
           </ul>
@@ -177,7 +179,7 @@ export default function Home() {
         <div className={styles.footerText}>
           <h1 className={styles.footerTitle}>Ready to get started?</h1>
           <h3 className={styles.footerDescription}>
-            Automate your newsletter creation with nujen
+            Generate your first newsletter with nujen 💌
           </h3>
         </div>
         <div style={{ marginLeft: "auto" }}>
@@ -192,7 +194,7 @@ export default function Home() {
               fontFamily: "Nunito Sans",
             }}
           >
-            Create Your 1st Free Newsletter
+          Get started for free
           </Button>
         </div>
       </div>
