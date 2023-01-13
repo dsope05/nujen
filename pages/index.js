@@ -4,7 +4,8 @@ import Link from "next/link";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../magic/UserContext";
 import Newsletter from "./newsletter";
 import { Analytics } from "@vercel/analytics/react";
 import "@fontsource/roboto/300.css";
@@ -13,7 +14,10 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Button from "@mui/material/Button";
 import Hidden from "@mui/material/Hidden";
-import { typographyClasses } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Snackbar from "@mui/material/Snackbar";
+import { magic } from '../magic/magic';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,14 +30,44 @@ const callChatGPT = async (answers) => {
 };
 
 export default function Home() {
+  const [user, setUser] = useContext(UserContext);
   const [answers, updateAnswer] = useState({
     answer1: "",
     answer2: "",
     answer3: "",
   });
+  const [snackBar, showSnackBar] = useState(false);
   const router = useRouter();
+
+  const snackAction = (
+    <>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={() => showSnackBar(false)}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </>
+  );
+
+  const handleLogin = (e) => {
+    if (user?.issuer) {
+      magic.user.logout().then(() => {
+        setUser({ user: null });
+        showSnackBar(true);
+      });
+    } else {
+      router.push("login");
+    }
+  };
   const handleClick = (e) => {
-    router.push("sign-up");
+    if (user?.issuer) {
+      router.push("form");
+    } else {
+      router.push("login");
+    }
   };
   const answerQuestion = (e, q) => {
     updateAnswer({ ...answers, [q]: e.target.value });
@@ -56,21 +90,25 @@ export default function Home() {
         >
           nujen
         </h3>
-        <Hidden smDown>
-          <Button
-            variant="outlined"
-            sx={{
-              marginRight: "20px",
-              marginLeft: "auto",
-              color: "#333",
-              border: "1px solid #333",
-              fontFamily: "Nunito Sans",
-            }}
-            onClick={handleClick}
-          >
-            Get started for free
-          </Button>
-        </Hidden>
+        <Button
+          variant="outlined"
+          sx={{
+            marginRight: "20px",
+            marginLeft: "auto",
+            color: "#333",
+            border: "1px solid #333",
+          }}
+          onClick={handleLogin}
+        >
+          {user?.issuer && 'Logout' || 'Login'}
+        </Button>
+        <Snackbar
+          open={snackBar}
+          autoHideDuration={4000}
+          onClose={() => showSnackBar(false)}
+          message="Logged out!"
+          action={snackAction}
+        />
       </div>
       <main className={styles.main}>
         <h1 className={styles.title}>
