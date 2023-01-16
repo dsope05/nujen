@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../magic/UserContext";
 import Newsletter from "./newsletter";
 import { Analytics } from "@vercel/analytics/react";
@@ -37,6 +37,7 @@ export default function Home() {
     answer3: "",
   });
   const [snackBar, showSnackBar] = useState(false);
+  const [subscribed, updateSubscribed] = useState(false);
   const router = useRouter();
 
   const snackAction = (
@@ -90,11 +91,28 @@ export default function Home() {
         >
           nujen
         </h3>
+        { !subscribed && (
+          <a 
+            href={process.env.STRIPE_CHECKOUT_URL}
+            style={{ marginLeft: 'auto' }}
+            target="_blank"
+            rel="noopener"
+          >
+          <Button
+            variant="text"
+            sx={{
+              marginRight: "20px",
+              color: "#333",
+            }}
+          >
+            Pricing
+          </Button>
+          </a>
+        )}
         <Button
           variant="outlined"
           sx={{
             marginRight: "20px",
-            marginLeft: "auto",
             color: "#333",
             border: "1px solid #333",
           }}

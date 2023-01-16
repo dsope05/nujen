@@ -20,6 +20,8 @@ import {
   setFormDataState,
 } from "../../store/formDataSlice";
 import styles from "../../styles/sign-up.module.css";
+import { selectSubscriptionStatusState, setSubscriptionStatusState } from "../../store/subscriptionStatusSlice";
+import { UserContext } from "../../magic/UserContext";
 
 const steps = ["About You (The Author)", "About the Newsletter", "For nujen"];
 
@@ -49,6 +51,7 @@ const multiLineTextInputSx = {
 
 export default function HorizontalLinearStepper() {
   // const [formData, updateFormData] = React.useState({});
+  const [user, setUser] = React.useContext(UserContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [hashtagState, setHashtagState] = React.useState(false);
   const [mentionState, setMentionState] = React.useState(false);
@@ -59,6 +62,7 @@ export default function HorizontalLinearStepper() {
   const router = useRouter();
   const captchaState = useSelector(selectCaptchaState);
   const formDataState = useSelector(selectFormDataState);
+  const { freeTrial, subscription } = useSelector(selectSubscriptionStatusState);
   const dispatch = useDispatch();
   if (process.env.ENV === "dev") {
     //dispatch();
@@ -83,9 +87,19 @@ export default function HorizontalLinearStepper() {
     setSkipped(newSkipped);
     if (e.target.innerText === "FINISH") {
       if (captchaState === true) {
-        router.push("/newsletter");
+        //router.push("/newsletter");
       }
-      updateShowModal(true);
+      if (freeTrial === 'noRecord') {
+        fetch('/api/createFreeTrialRecord', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: user?.email,
+            handle: formDataState?.twitterHandle,
+          })
+        })
+      }
+      router.push("/newsletter");
+      //updateShowModal(true);
     }
   };
 
@@ -143,7 +157,7 @@ export default function HorizontalLinearStepper() {
       <br />
       <br />
       <Box sx={{ width: "100%" }}>
-        {!captchaState && (
+        {/*!captchaState && (
           <Modal open={showModal} onClose={handleClose}>
             <div className={styles.modalStyle}>
               <ReCAPTCHA
@@ -152,7 +166,7 @@ export default function HorizontalLinearStepper() {
               />
             </div>
           </Modal>
-        )}
+        )*/}
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const stepProps = {};
