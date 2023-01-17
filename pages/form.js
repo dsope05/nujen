@@ -120,7 +120,7 @@ export default function Signup() {
             <a
               href={process.env.STRIPE_CHECKOUT_URL}
               target="_blank"
-              rel="noopener"
+              rel="noreferrer"
               style={{ textDecoration: 'none' }}
             >
               <Button onClick={handleUpgrade} autoFocus>

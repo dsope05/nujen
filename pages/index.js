@@ -96,7 +96,7 @@ export default function Home() {
             href={process.env.STRIPE_CHECKOUT_URL}
             style={{ marginLeft: 'auto' }}
             target="_blank"
-            rel="noopener"
+            rel="noreferrer"
           >
           <Button
             variant="text"
