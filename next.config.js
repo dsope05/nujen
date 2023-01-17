@@ -8,7 +8,9 @@ const nextConfig = {
     NEXT_PUBLIC_AIRTABLE_API_KEY: process.env.NEXT_PUBLIC_AIRTABLE_API_KEY,
     NEXT_PUBLIC_AIRTABLE_BASE_ID: process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID,
     NEXT_PUBLIC_AIRTABLE_TABLE_ID: process.env.NEXT_PUBLIC_AIRTABLE_TABLE_ID,
-  }
-}
+    MAGIC_API_KEY: process.env.MAGIC_API_KEY,
+    STRIPE_CHECKOUT_URL: process.env.STRIPE_CHECKOUT_URL,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

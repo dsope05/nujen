@@ -12,14 +12,19 @@ import { style } from "@mui/system";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCaptchaState, setCaptchaState } from "../../store/captchaSlice";
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import {
   selectFormDataState,
   setFormDataState,
 } from "../../store/formDataSlice";
 import styles from "../../styles/sign-up.module.css";
+import {
+  selectSubscriptionStatusState,
+  setSubscriptionStatusState,
+} from "../../store/subscriptionStatusSlice";
+import { UserContext } from "../../magic/UserContext";
 
 const steps = ["About You (The Author)", "About the Newsletter", "For nujen"];
 
@@ -49,6 +54,7 @@ const multiLineTextInputSx = {
 
 export default function HorizontalLinearStepper() {
   // const [formData, updateFormData] = React.useState({});
+  const [user, setUser] = React.useContext(UserContext);
   const [activeStep, setActiveStep] = React.useState(0);
   const [hashtagState, setHashtagState] = React.useState(false);
   const [mentionState, setMentionState] = React.useState(false);
@@ -59,6 +65,9 @@ export default function HorizontalLinearStepper() {
   const router = useRouter();
   const captchaState = useSelector(selectCaptchaState);
   const formDataState = useSelector(selectFormDataState);
+  const { freeTrial, subscription } = useSelector(
+    selectSubscriptionStatusState
+  );
   const dispatch = useDispatch();
   if (process.env.ENV === "dev") {
     //dispatch();
@@ -83,9 +92,19 @@ export default function HorizontalLinearStepper() {
     setSkipped(newSkipped);
     if (e.target.innerText === "FINISH") {
       if (captchaState === true) {
-        router.push("/newsletter");
+        //router.push("/newsletter");
       }
-      updateShowModal(true);
+      if (freeTrial === "noRecord") {
+        fetch("/api/createFreeTrialRecord", {
+          method: "POST",
+          body: JSON.stringify({
+            email: user?.email,
+            handle: formDataState?.twitterHandle,
+          }),
+        });
+      }
+      router.push("/newsletter");
+      //updateShowModal(true);
     }
   };
 
@@ -137,13 +156,16 @@ export default function HorizontalLinearStepper() {
     <>
       <div className={styles.title}>Newsletter Generator</div>
       <div className={styles.tagline}>
-        nujen v1 will generate a newsletter for your brand community, based on
-        specific tweets you&apos;ve liked.
+        <b>
+          👋 We ask for your info (Twitter handle, email) and details about the
+          newsletter so nujen can generate the 1st issue of your newsletter, but
+          we won&apos;t share your info with anyone else.
+        </b>
       </div>
       <br />
       <br />
       <Box sx={{ width: "100%" }}>
-        {!captchaState && (
+        {/*!captchaState && (
           <Modal open={showModal} onClose={handleClose}>
             <div className={styles.modalStyle}>
               <ReCAPTCHA
@@ -152,7 +174,7 @@ export default function HorizontalLinearStepper() {
               />
             </div>
           </Modal>
-        )}
+        )*/}
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const stepProps = {};
@@ -207,9 +229,11 @@ export default function HorizontalLinearStepper() {
                   defaultValue={formDataState?.email || ""}
                 />
                 <TextField
+                  type="text"
                   onChange={onChange}
+                  onKeyDown={(evt) => evt.key === "@" && evt.preventDefault()}
                   id="twitterHandle"
-                  label="Your Twitter Handle"
+                  label="Your Twitter Handle (No @ symbol)"
                   placeholder="FarzaTV"
                   variant="outlined"
                   sx={textInputSx}
@@ -238,53 +262,34 @@ export default function HorizontalLinearStepper() {
             {activeStep === 1 && (
               <div className={styles.stepperContainer}>
                 <div>
+                  <h2>Who&apos;s the newsletter for?</h2>
+                  Be very specific. For example:{" "}
+                  <i>Members of Nights & Weekend Season 2.</i>
+                  <br />
+                  <br />
+                  <TextField
+                    onChange={onChange}
+                    id="readers"
+                    label="Very specific set of readers"
+                    placeholder="Members of Nights & Weekend Season 2"
+                    variant="outlined"
+                    rows={2}
+                    multiline
+                    sx={textInputSxLong}
+                    defaultValue={formDataState?.readers || ""}
+                  />
+                  <br />
                   <h2>
                     What&apos;s the specific, unique and disputable purpose of
                     the newsletter?
                   </h2>
-                  <br />
-                  A specific, unique and disputable purpose can help you make
-                  decisions about the newsletter.
-                  <br />
-                  <br />
-                  To help you find it, first - <i>try zooming out</i>. Once you
-                  find a high-level answer, keep asking WHY until you hit a
-                  belief or value.
-                  <br />
-                  <br />
-                  <b>For example</b> - let&apos;s say <u>Farza</u> is writing a newsletter.
-                  <br />
-                  <br />
-                  <b>Newsletter type:</b> Weekly Digest
-                  <br />
-                  <br />
-                  <b>
-                    Your purpose is a category (i.e., you don’t have a purpose):
-                  </b>{" "}
-                  To help n&w s2 members learn about other members.
-                  <br />
-                  <br />
-                  🤔 <i>WHY help members learn about one another?</i>
-                  <br />
-                  <br />
-                  <b>Basic, boring purpose, but at least you’re trying: </b>
-                  We want n&w s2 members to learn about projects, wins,
-                  learnings, or opportunities that other members are
-                  experiencing.
-                  <br />
-                  <br />
-                  🤔 <i>WHY do you want that?</i>
-                  <br />
-                  <br />
-                  <b>
-                    Your purpose is specific, unique, and disputable (multiple
-                    alternatives):
-                  </b>{" "}
-                  To inspire n&w s2 members to keep building, launching,
-                  measuring and learning - so that we can all win together.
-                  <br />
-                  <br />
-                  <i>That&apos;s more like it. Now it&apos;s your turn!</i>
+                  Find a purpose for your newsletter by zooming out and asking
+                  WHY until you hit a belief or value. For example, a purpose
+                  for a weekly digest could be:{" "}
+                  <i>
+                    To inspire n&w s2 members to keep building, launching,
+                    measuring and learning - so that we can all win together.
+                  </i>
                   <br />
                   <br />
                 </div>
@@ -300,30 +305,15 @@ export default function HorizontalLinearStepper() {
                   defaultValue={formDataState?.purpose || ""}
                 />
                 <br />
-                <h2>Who&apos;s the newsletter for?</h2>
-                <br />
-                Be very specific.
-                <br />
-                <br />
-                <TextField
-                  onChange={onChange}
-                  id="readers"
-                  label="Very specific set of readers"
-                  placeholder="Members of Nights & Weekend Season 2"
-                  variant="outlined"
-                  rows={2}
-                  multiline
-                  sx={textInputSxLong}
-                  defaultValue={formDataState?.readers || ""}
-                />
-                <br />
               </div>
             )}
             {activeStep === 2 && (
               <div className={styles.stepperContainer}>
                 <h1>For nujen</h1>
                 <br />
-                <h2>How many tweets do you want to feature?</h2>
+                <h2>How many tweets do you want nujen to inspect?</h2>
+                <br />
+                <b>Note: We recommend 1-10.</b>
                 <br />
                 <TextField
                   onChange={onChange}
@@ -335,35 +325,33 @@ export default function HorizontalLinearStepper() {
                   defaultValue={formDataState?.numOfTweets || ""}
                 />
                 <br />
-                <h2>Give a tagline for the list of featured tweets.</h2>
+                <h2>How can nujen find these tweets?</h2>
                 <br />
-                This tagline should include the # of tweets you want us to
-                feature. e.g. Top 10 Builds
-                <br />
-                <br />
-                <TextField
-                  onChange={onChange}
-                  id="tagline"
-                  label="Tagline"
-                  placeholder="Top 10 Builds"
-                  variant="outlined"
-                  sx={textInputSx}
-                  defaultValue={formDataState?.tagline || ""}
-                />
-                <br />
-                <h2>
-                  How can nujen find these tweets?
-                </h2>
-                <br />
-                <FormGroup sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                }}>
-                  <FormControlLabel control={<Checkbox onChange={() => setHashtagState(!hashtagState)}/>} label="#hashtag" />
-                  <FormControlLabel control={<Checkbox onChange={() => setMentionState(!mentionState)}/>} label="@mention" />
+                <FormGroup
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        onChange={() => setHashtagState(!hashtagState)}
+                      />
+                    }
+                    label="#hashtag"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        onChange={() => setMentionState(!mentionState)}
+                      />
+                    }
+                    label="@mention"
+                  />
                 </FormGroup>
                 <br />
-                { mentionState && (
+                {mentionState && (
                   <TextField
                     onChange={onChange}
                     id="mention"
@@ -374,22 +362,34 @@ export default function HorizontalLinearStepper() {
                     defaultValue={formDataState?.mention || ""}
                   />
                 )}
-                { hashtagState && (
-                <TextField
-                  onChange={onChange}
-                  id="hashtag"
-                  label="#hashtag"
-                  placeholder="#nws2"
-                  variant="outlined"
-                  sx={textInputSx}
-                  defaultValue={formDataState?.hashtag || ""}
-                />
+                {hashtagState && (
+                  <TextField
+                    onChange={onChange}
+                    id="hashtag"
+                    label="#hashtag"
+                    placeholder="#nws2"
+                    variant="outlined"
+                    sx={textInputSx}
+                    defaultValue={formDataState?.hashtag || ""}
+                  />
                 )}
                 <br />
                 <p className={styles.okText}>
-                  { (mentionState && !hashtagState) && `✽ OK, we'll look for tweets that mention ${formDataState?.mention || '________'}`}
-                  { (!mentionState && hashtagState) && `✽ OK, we'll look for tweets that have hashtag ${formDataState?.hashtag || '________'}`}
-                  { (mentionState && hashtagState) && ` ✽ OK, we'll look for tweets that mention ${formDataState?.mention || '________'} AND have hashtag ${formDataState?.hashtag || '________'}`}
+                  {mentionState &&
+                    !hashtagState &&
+                    `✽ OK, we'll look for tweets that mention ${
+                      formDataState?.mention || "________"
+                    }`}
+                  {!mentionState &&
+                    hashtagState &&
+                    `✽ OK, we'll look for tweets that have hashtag ${
+                      formDataState?.hashtag || "________"
+                    }`}
+                  {mentionState &&
+                    hashtagState &&
+                    ` ✽ OK, we'll look for tweets that mention ${
+                      formDataState?.mention || "________"
+                    } AND have hashtag ${formDataState?.hashtag || "________"}`}
                 </p>
               </div>
             )}

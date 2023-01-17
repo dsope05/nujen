@@ -8,7 +8,6 @@ import { selectCaptchaState, setCaptchaState } from "../store/captchaSlice";
 import { selectFormDataState, setFormDataState } from "../store/formDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
-import { createNewsletterRecord } from "../airtable/airtable";
 import dynamic from "next/dynamic";
 import Button from "@mui/material/Button";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
@@ -52,12 +51,14 @@ export default function Newsletter({ switchRenderNewsletter }) {
     })
       .then((res) => res.json())
       .then((chatGPTResponse) => {
-        console.log('chatGPTResponse', chatGPTResponse)
         updateGPTNewsletter(chatGPTResponse?.res);
-        createNewsletterRecord(
-          formDataState?.email,
-          JSON.stringify(chatGPTResponse?.res)
-        );
+        fetch('/api/createNewsletterRecord', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: formDataState?.email,
+            gptResponse: chatGPTResponse?.res
+          })
+        })
       });
   };
   if (!gptNewsletter) {

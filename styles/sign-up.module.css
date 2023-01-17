@@ -4,6 +4,11 @@
   font-family: "Nunito Sans",
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
 .topLabel {
   align-self: flex-start;
   font-family: "Nunito Sans",
@@ -58,7 +63,6 @@
 }
 
 .tagline {
-  text-align: center;
   font-size: 20px;
   display: flex;
   justify-content: center;
