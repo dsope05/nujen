@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: 'https://nujen.framer.website/',
+        permanent: false,
+        basePath: false,
+      },
+    ]
+  },
   reactStrictMode: false,
   env: {
     SITE_KEY: process.env.SITE_KEY,
