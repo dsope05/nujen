@@ -6,6 +6,7 @@ import { magic } from '../magic/magic';
 import { UserContext } from '../magic/UserContext';
 import { selectSubscriptionStatusState, setSubscriptionStatusState } from "../store/subscriptionStatusSlice";
 import { useDispatch, useSelector } from "react-redux";
+import checkSubscription from "../apiUtils/subscriptionCheck";
 
 const App = ({ Component, pageProps }) => {
   const [user, setUser] = useState();
@@ -21,26 +22,11 @@ const App = ({ Component, pageProps }) => {
         const userData = await magic.user.getMetadata();
           setUser(userData)
           if (userData?.email) {
-            const subs = fetch('/api/subscriptions', {
-              method: 'POST',
-              body: JSON.stringify({
-                email: userData.email,
-              })
-            }).then(res => res.json())
-
-            const trial = fetch('/api/queryFreeTrialRecord', {
-              method: 'POST',
-              body: JSON.stringify({
-                email: userData.email,
-              })
-            }).then(res => res.json());
-
-            Promise.all([subs, trial]).then(([sub, tri]) => {
+            checkSubscription(userData.email).then(({ sub, tri }) => {
               const subscriptionState = {
                 subscription: 'inactive',
                 freeTrial: 'inactive',
               };
-
               if (sub.status === 'active') {
                 subscriptionState.subscription = 'active'
               }

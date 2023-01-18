@@ -14,25 +14,53 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import checkSubscription from "../apiUtils/subscriptionCheck";
 
 export default function Signup() {
   const [user, setUser] = useContext(UserContext);
   const [openDialog, setOpenDialog] = useState(true);
   const [view, updateView] = useState('loading');
   const router = useRouter();
+  const dispatch = useDispatch();
   const { freeTrial, subscription } = useSelector(selectSubscriptionStatusState);
+  useEffect(() => {
+    const asyncCalls = async () => {
+      if (user?.email && !subscription && !freeTrial) {
+        checkSubscription(user.email).then(({ sub, tri }) => {
+            const subscriptionState = {
+              subscription: 'inactive',
+              freeTrial: 'inactive',
+            };
+            if (sub.status === 'active') {
+              subscriptionState.subscription = 'active'
+            }
+            if (tri.status === 'active') {
+              subscriptionState.freeTrial = 'active'
+            } else if (tri.status === 'noRecord') {
+              subscriptionState.freeTrial = 'noRecord'
+            }
+              dispatch(setSubscriptionStatusState(subscriptionState));
+          })
+
+        }
+      }
+      asyncCalls();
+  }, [user])
 
   useEffect(() => {
-    if (!user || user?.loading || !freeTrial || !subscription) {
-      updateView('loading');
-    } else if (!user?.issuer) {
-      router.push('/login');
-    } else if (subscription === 'active' || freeTrial === 'active' || freeTrial === 'noRecord'){
-      updateView('active');
-    } else {
-      updateView('inactive')
-      setOpenDialog(true);
-    }
+    const asyncCalls = async () => {
+        if (subscription === 'active' || freeTrial === 'active' || freeTrial === 'noRecord'){
+          updateView('active');
+        } else if (!user || user?.loading || !freeTrial || !subscription) {
+          updateView('loading');
+        } else if (!user?.issuer) {
+          router.push('/login');
+        } else {
+          updateView('inactive')
+          setOpenDialog(true);
+        }
+      }
+    asyncCalls();
   }, [user, subscription, freeTrial])
   
   const goBack = () => {
