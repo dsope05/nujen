@@ -51,6 +51,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
     })
       .then((res) => res.json())
       .then((chatGPTResponse) => {
+        console.log('chatGPTResponse for Airtable: ', chatGPTResponse)
         updateGPTNewsletter(chatGPTResponse?.res);
         fetch('/api/createNewsletterRecord', {
           method: 'POST',
