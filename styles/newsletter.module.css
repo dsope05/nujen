@@ -75,6 +75,12 @@
 
 .noTweetsCenter {
   max-width: 500px;
+  text-align: center;
+}
+
+.timeoutContainer{
+  text-align: center;
+  max-width: 700px;
 }
 
 @media (max-width: 450px) {

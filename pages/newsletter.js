@@ -25,6 +25,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
   const [gptNewsletter, updateGPTNewsletter] = useState('');
   const [copied, updateCopiedState] = useState(false);
   const [noTweetsError, updateNoTweetsError] = useState(false);
+  const [timeoutError, updateTimeoutError] = useState(false);
   const authState = useSelector(selectCaptchaState);
   const formDataState = useSelector(selectFormDataState);
 
@@ -49,7 +50,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
       updateNoTweetsError(true)
     } else {
       const timer = setTimeout(() => {
-        updateNoTweetsError(true)
+        updateTimeoutError(true)
       }, 60000)
     // GPT-3 Integration
     fetch("/api/completion", {
@@ -113,6 +114,33 @@ export default function Newsletter({ switchRenderNewsletter }) {
         <div className={styles.noTweetsCenter}>
           <h1>
             No tweets found for input, please adjust parameters and try again
+          </h1>
+        </div>
+      </main>
+     </>
+   )
+  }
+
+  if (timeoutError) {
+   return(
+     <>
+      <div className={styles.header}>
+        <h3
+          onClick={goBack}
+          style={{
+            cursor: "pointer",
+            marginLeft: "40px",
+            color: '#452c63',
+            fontSize: "24px",
+          }}
+        >
+          nujen
+        </h3>
+      </div>
+      <main className={styles.newsletterMain}>
+        <div className={styles.timeoutContainer}>
+          <h1>
+            Sorry, the gpt-3 api timed out. This happens sometimes. Please try again later!
           </h1>
         </div>
       </main>
