@@ -45,9 +45,12 @@ export default function Newsletter({ switchRenderNewsletter }) {
       }),
     }).then((res) => res.json());
     console.log("Curated tweets: ", tweets);
-    if (!tweets || !Object.keys(tweets).length > 0) {
+    if (!tweets || tweets.error) {
       updateNoTweetsError(true)
     } else {
+      const timer = setTimeout(() => {
+        updateNoTweetsError(true)
+      }, 60000)
     // GPT-3 Integration
     fetch("/api/completion", {
       method: "POST",
@@ -55,6 +58,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
     })
       .then((res) => res.json())
       .then((chatGPTResponse) => {
+        clearTimeout(timer);
         console.log('chatGPTResponse for Airtable: ', chatGPTResponse)
         updateGPTNewsletter(chatGPTResponse?.res);
         fetch('/api/createNewsletterRecord', {
@@ -92,14 +96,24 @@ export default function Newsletter({ switchRenderNewsletter }) {
   if (noTweetsError) {
    return(
      <>
-      <Header/>
+      <div className={styles.header}>
+        <h3
+          onClick={goBack}
+          style={{
+            cursor: "pointer",
+            marginLeft: "40px",
+            color: '#452c63',
+            fontSize: "24px",
+          }}
+        >
+          nujen
+        </h3>
+      </div>
       <main className={styles.newsletterMain}>
         <div className={styles.noTweetsCenter}>
-          { noTweetsError && (
           <h1>
             No tweets found for input, please adjust parameters and try again
           </h1>
-          )}
         </div>
       </main>
      </>
@@ -108,7 +122,19 @@ export default function Newsletter({ switchRenderNewsletter }) {
 
   return (
     <>
-    <Header/>
+      <div className={styles.header}>
+        <h3
+          onClick={goBack}
+          style={{
+            cursor: "pointer",
+            marginLeft: "40px",
+            color: '#452c63',
+            fontSize: "24px",
+          }}
+        >
+          nujen
+        </h3>
+      </div>
       <main className={styles.newsletterMain}>
         <div className={styles.newsletterCenter}>
           { Object.keys(gptNewsletter).length > 0 ? (
@@ -133,7 +159,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
                   text={gptNewsletter}
                   onCopy={() => updateCopiedState(true)}
                 >
-                  <Button sx={{color: 'lavender', border: '1px white'}} variant="text">
+                  <Button sx={{ border: '1px white'}} variant="text">
                     <span className={styles.roboEmoji}> 🤖 </span>
                     Copy HTML
                   </Button>
@@ -144,7 +170,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
                   <span className={styles.roboEmoji}> 💛 </span>
                   <a
                     className="twitter-share-button"
-                    style={{ color: 'lavender', textDecoration: 'none' }}
+                    style={{ textDecoration: 'none' }}
                     rel="noreferrer"
                     target="_blank"
                     href="https://twitter.com/intent/tweet?text=🤖%20Generated%20my%20first%20@nujen_ai%20newsletter!%0a%0a<ATTACH_SCREENSHOT_OF_NUJEN>%0a%0acc%20@_buildspace"
@@ -160,7 +186,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
                   <a
                     rel="noreferrer"
                     target="_blank"
-                    style={{ color: 'lavender', textDecoration: 'none' }}
+                    style={{ textDecoration: 'none' }}
                     href="https://nujen.canny.io/"
                     data-size="large"
                   >
@@ -176,20 +202,20 @@ export default function Newsletter({ switchRenderNewsletter }) {
               />
             ) : (
               <div className={styles.loadingSpinner}>
-                <CircularProgress />
+                <CircularProgress sx={{ color: 'lavender' }} color="inherit" />
               </div>
             )}
           </div>
           </>
         ) : (
         <div className={styles.loadingSpinner}>
-          <h1 style={{ marginBottom: '20px'}}>
+          <h1 style={{ marginBottom: '20px' }}>
             Generating your newsletter
           </h1>
-          <h1 style={{ marginBottom: '40px'}}>
+          <h1 style={{ marginBottom: '40px' }}>
             This can take up to 30 seconds...
           </h1>
-          <CircularProgress />
+          <CircularProgress sx={{ color: 'lavender' }} color="inherit" />
         </div>
         )}
         </div>

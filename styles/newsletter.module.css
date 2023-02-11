@@ -8,16 +8,16 @@
   justify-content: center;
   padding: 2rem;
   min-height: 100vh;
-  background: linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  background-color: #452c63;
+  background-color: lavender;
 }
 
 .header {
   width: 100%;
   height: 60px;
-  color: white;
+  color: #452c63;
   display: flex;
   align-items: center;
+  background-color: lavender;
 }
 
 .paper {
@@ -49,6 +49,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: 'white',
 }
 
 .newsletterWelcome {
@@ -57,7 +58,7 @@
   margin-bottom: 50px;
   font-size: 32px;
   text-align: center;
-  color: lavender;
+  color: black;
 }
 
 .newsletterButtons {

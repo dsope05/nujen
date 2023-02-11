@@ -85,7 +85,7 @@ export default function Home() {
           style={{
             cursor: "pointer",
             marginLeft: "40px",
-            color: "lavender",
+            color: "#452c63",
             fontSize: "24px",
           }}
         >
@@ -94,7 +94,7 @@ export default function Home() {
         { !subscribed && (
           <a 
             href={process.env.STRIPE_CHECKOUT_URL}
-            style={{ marginLeft: 'auto' }}
+            style={{ marginLeft: 'auto', textDecoration: 'none' }}
             target="_blank"
             rel="noreferrer"
           >
@@ -102,8 +102,8 @@ export default function Home() {
             variant="text"
             sx={{
               marginRight: "20px",
-              color: "lavender",
-              border: '1px solid lavender'
+              color: "#452c63",
+              border: "1px solid #452c63",
             }}
           >
             Pricing
@@ -114,8 +114,8 @@ export default function Home() {
           variant="outlined"
           sx={{
             marginRight: "20px",
-            color: "lavender",
-            border: "1px solid lavender",
+            color: "#452c63",
+            border: "1px solid #452c63",
           }}
           onClick={handleLogin}
         >

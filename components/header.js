@@ -1,4 +1,4 @@
-import styles from "../styles/sign-up.module.css";
+import styles from "../styles/header.module.css";
 import { useRouter } from "next/router";
 
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
         style={{
           cursor: "pointer",
           marginLeft: "40px",
-          color: "white",
+          color: "#452c63",
           fontSize: "24px",
         }}
       >

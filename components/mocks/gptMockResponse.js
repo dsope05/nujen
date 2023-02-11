@@ -1,4 +1,4 @@
-const newsletter = `<h1>This Week's Top 5 Tweets for Buildspace!</h1>
+const newsletter = { res: `<h1>This Week's Top 5 Tweets for Buildspace!</h1>
 
 <p>Hey everyone!</p>
 <p>It's been a great week for buildspace. I'm excited to share this week's top 5 tweets from our amazing community of
@@ -27,5 +27,6 @@ const newsletter = `<h1>This Week's Top 5 Tweets for Buildspace!</h1>
 <h1>Be a Part of the Newsletter!</h1>
 <p>We want to feature more of our amazing community members in our newsletter! If you want to be featured, just mention
     or tag @_buildspace on Twitter. We can't wait to hear from you!</p>`
+}
 
 export default newsletter;
