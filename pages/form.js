@@ -95,7 +95,7 @@ export default function Signup() {
           style={{
             cursor: "pointer",
             marginLeft: "40px",
-            color: "lavender",
+            color: '#452c63',
             fontSize: "24px",
           }}
         >

@@ -6,8 +6,7 @@
   text-align: center;
   padding: 0 6rem 6rem 6rem;
   min-height: 100vh;
-  background: linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  background-color: #452c63;
+  background-color: lavender;
 }
 
 .whySection {
@@ -28,8 +27,7 @@
   flex-direction: row;
   padding: 5rem;
   min-height: 40vh;
-  background: linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  background-color: #452c63;
+  background-color: lavender;
 }
 
 .subscribe {
@@ -43,7 +41,7 @@
 .footerTitle {
   font-size: 32px;
   font-weight: bold;
-  color: lavender;
+  color: #452c63;
 }
 
 .footerDescription {
@@ -158,6 +156,7 @@
   justify-content: center;
   font-size: 79px;
   font-family: 'Nunito Sans';
+  color: #452c63;
 }
 
 .description {
@@ -191,7 +190,7 @@
   color: white;
   display: flex;
   align-items: center;
-  background-color: #452c63;
+  background-color: lavender;
 }
 
 .card p {
