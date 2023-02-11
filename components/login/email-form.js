@@ -14,7 +14,7 @@ const EmailForm = ({ onEmailSubmit, disabled }) => {
   return (
     <>
       <form onSubmit={handleSubmit} className={styles.emailForm}>
-        <h3 className='form-header'>Login</h3>
+        <h3 className={styles['login-title']}>Login</h3>
         <div className='input-wrapper'>
           <TextField
             onChange={(e) => setEmail(e.target.value)}
@@ -26,12 +26,13 @@ const EmailForm = ({ onEmailSubmit, disabled }) => {
         <div>
           <Button
           sx={{
-            padding: '10px'
+            padding: '10px',
+            color: '#452c63'
           }}
             disabled={disabled}
             onClick={handleSubmit}
           >
-            Send Magic Link
+            Send Login Link
           </Button>
         </div>
       </form>

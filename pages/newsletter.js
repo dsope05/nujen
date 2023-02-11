@@ -15,6 +15,7 @@ import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Header from "../components/header";
 
 const JoditWrapper = dynamic(() => import("../components/JoditWrapper"), {
   ssr: false,
@@ -23,6 +24,7 @@ const JoditWrapper = dynamic(() => import("../components/JoditWrapper"), {
 export default function Newsletter({ switchRenderNewsletter }) {
   const [gptNewsletter, updateGPTNewsletter] = useState('');
   const [copied, updateCopiedState] = useState(false);
+  const [noTweetsError, updateNoTweetsError] = useState(false);
   const authState = useSelector(selectCaptchaState);
   const formDataState = useSelector(selectFormDataState);
 
@@ -43,7 +45,9 @@ export default function Newsletter({ switchRenderNewsletter }) {
       }),
     }).then((res) => res.json());
     console.log("Curated tweets: ", tweets);
-
+    if (!tweets || !Object.keys(tweets).length > 0) {
+      updateNoTweetsError(true)
+    } else {
     // GPT-3 Integration
     fetch("/api/completion", {
       method: "POST",
@@ -62,6 +66,7 @@ export default function Newsletter({ switchRenderNewsletter }) {
         })
       });
   };
+}
   if (!gptNewsletter) {
     generateNewsletter();
   }
@@ -84,22 +89,26 @@ export default function Newsletter({ switchRenderNewsletter }) {
       </IconButton>
     </React.Fragment>
   );
+  if (noTweetsError) {
+   return(
+     <>
+      <Header/>
+      <main className={styles.newsletterMain}>
+        <div className={styles.noTweetsCenter}>
+          { noTweetsError && (
+          <h1>
+            No tweets found for input, please adjust parameters and try again
+          </h1>
+          )}
+        </div>
+      </main>
+     </>
+   )
+  }
 
   return (
     <>
-      <div className={styles.header}>
-        <h3
-          onClick={goBack}
-          style={{
-            cursor: "pointer",
-            marginLeft: "40px",
-            color: "#333",
-            fontSize: "24px",
-          }}
-        >
-          nujen
-        </h3>
-      </div>
+    <Header/>
       <main className={styles.newsletterMain}>
         <div className={styles.newsletterCenter}>
           { Object.keys(gptNewsletter).length > 0 ? (
@@ -124,17 +133,18 @@ export default function Newsletter({ switchRenderNewsletter }) {
                   text={gptNewsletter}
                   onCopy={() => updateCopiedState(true)}
                 >
-                  <Button variant="outlined">
+                  <Button sx={{color: 'lavender', border: '1px white'}} variant="text">
                     <span className={styles.roboEmoji}> 🤖 </span>
                     Copy HTML
                   </Button>
                 </CopyToClipboard>
               </span>
               <span className={styles.btnSpan}>
-                <Button variant="outlined">
+                <Button variant="text">
                   <span className={styles.roboEmoji}> 💛 </span>
                   <a
                     className="twitter-share-button"
+                    style={{ color: 'lavender', textDecoration: 'none' }}
                     rel="noreferrer"
                     target="_blank"
                     href="https://twitter.com/intent/tweet?text=🤖%20Generated%20my%20first%20@nujen_ai%20newsletter!%0a%0a<ATTACH_SCREENSHOT_OF_NUJEN>%0a%0acc%20@_buildspace"
@@ -145,11 +155,12 @@ export default function Newsletter({ switchRenderNewsletter }) {
                 </Button>
               </span>
               <span className={styles.btnSpan}>
-                <Button variant="outlined">
+                <Button variant="text">
                   <span className={styles.roboEmoji}> ⛰️ </span>
                   <a
                     rel="noreferrer"
                     target="_blank"
+                    style={{ color: 'lavender', textDecoration: 'none' }}
                     href="https://nujen.canny.io/"
                     data-size="large"
                   >

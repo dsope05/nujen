@@ -17,9 +17,9 @@ const completionApi = (prompt) => {
 };
 
 export default async function handler(request, response) {
-  /*if (process.env.ENV === "") {
+  if (process.env.ENV === "") {
     return response.status(200).json(gptMockResponse);
-  }*/
+  }
   const appState = JSON.parse(request.body);
   const formData = appState.formDataState;
   const tweets = appState.tweets;

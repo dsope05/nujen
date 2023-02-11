@@ -8,6 +8,8 @@
   justify-content: center;
   padding: 2rem;
   min-height: 100vh;
+  background: linear-gradient(to bottom,transparent,rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background-color: #452c63;
 }
 
 .header {
@@ -16,6 +18,10 @@
   color: white;
   display: flex;
   align-items: center;
+}
+
+.paper {
+  color: black;
 }
 
 .newsletterCenter {
@@ -51,6 +57,7 @@
   margin-bottom: 50px;
   font-size: 32px;
   text-align: center;
+  color: lavender;
 }
 
 .newsletterButtons {
@@ -63,6 +70,10 @@
 .roboEmoji {
   font-size: 19px;
   margin-right: 5px;
+}
+
+.noTweetsCenter {
+  max-width: 500px;
 }
 
 @media (max-width: 450px) {
@@ -78,6 +89,7 @@
     font-size: 32px;
     margin: 15px;
   }
+
 
   .newsletterCenter {
     width: 100%;
