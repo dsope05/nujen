@@ -215,7 +215,7 @@ export default function HorizontalLinearStepper() {
                   id="firstName"
                   label="First Name"
                   placeholder="Farza"
-                  variant="outlined"
+                  variant="filled"
                   sx={textInputSx}
                   defaultValue={formDataState?.firstName || ""}
                 />
@@ -224,7 +224,7 @@ export default function HorizontalLinearStepper() {
                   id="email"
                   label="Email"
                   placeholder="farza@gmail.com"
-                  variant="outlined"
+                  variant="filled"
                   sx={textInputSx}
                   defaultValue={formDataState?.email || ""}
                 />
@@ -235,7 +235,7 @@ export default function HorizontalLinearStepper() {
                   id="twitterHandle"
                   label="Your Twitter Handle (No @ symbol)"
                   placeholder="FarzaTV"
-                  variant="outlined"
+                  variant="filled"
                   sx={textInputSx}
                   defaultValue={formDataState?.twitterHandle || ""}
                 />
@@ -244,7 +244,7 @@ export default function HorizontalLinearStepper() {
                   id="title"
                   label="Title"
                   placeholder="Founder"
-                  variant="outlined"
+                  variant="filled"
                   sx={textInputSx}
                   defaultValue={formDataState?.title || ""}
                 />
@@ -253,7 +253,7 @@ export default function HorizontalLinearStepper() {
                   id="company"
                   label="Company Name"
                   placeholder="buildspace"
-                  variant="outlined"
+                  variant="filled"
                   sx={textInputSx}
                   defaultValue={formDataState?.company || ""}
                 />
@@ -272,7 +272,7 @@ export default function HorizontalLinearStepper() {
                     id="readers"
                     label="Very specific set of readers"
                     placeholder="Members of Nights & Weekend Season 2"
-                    variant="outlined"
+                    variant="filled"
                     rows={2}
                     multiline
                     sx={textInputSxLong}
@@ -298,7 +298,7 @@ export default function HorizontalLinearStepper() {
                   id="purpose"
                   label="Specific, Unique & Disputable Purpose"
                   placeholder="To inspire n&w s2 members to keep building, launching, measuring and learning - so that we can all win together."
-                  variant="outlined"
+                  variant="filled"
                   rows={2}
                   multiline
                   sx={multiLineTextInputSx}
@@ -320,7 +320,7 @@ export default function HorizontalLinearStepper() {
                   id="numOfTweets"
                   label="# of Featured Tweets"
                   placeholder="10"
-                  variant="outlined"
+                  variant="filled"
                   sx={textInputSx}
                   defaultValue={formDataState?.numOfTweets || ""}
                 />
@@ -357,7 +357,7 @@ export default function HorizontalLinearStepper() {
                     id="mention"
                     label="@mention"
                     placeholder="@_buildspace"
-                    variant="outlined"
+                    variant="filled"
                     sx={textInputSx}
                     defaultValue={formDataState?.mention || ""}
                   />
@@ -368,7 +368,7 @@ export default function HorizontalLinearStepper() {
                     id="hashtag"
                     label="#hashtag"
                     placeholder="#nws2"
-                    variant="outlined"
+                    variant="filled"
                     sx={textInputSx}
                     defaultValue={formDataState?.hashtag || ""}
                   />

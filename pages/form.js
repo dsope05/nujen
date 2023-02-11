@@ -64,7 +64,7 @@ export default function Signup() {
   }, [user, subscription, freeTrial])
   
   const goBack = () => {
-    router.push("/");
+    router.back();
   };
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -109,13 +109,22 @@ export default function Signup() {
           style={{
             cursor: "pointer",
             marginLeft: "40px",
-            color: "#333",
+            color: "white",
             fontSize: "24px",
           }}
         >
           nujen
         </h3>
       </div>
+    { view === 'loading' && (
+      <>
+        <div className={`${styles.main} ${styles.loader}`}>
+          <CircularProgress />
+        </div>
+      </>
+    )}
+    { view === 'active' && (
+      <>
       <div className={styles.main}>
         <Stepper />
       </div>
@@ -161,5 +170,7 @@ export default function Signup() {
     </>
     )}
     </>
-  );
+  )
 }
+</>
+  )}

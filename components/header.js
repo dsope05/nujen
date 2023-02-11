@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 const Header = () => {
   const router = useRouter();
   const goBack = () => {
-    router.push("/");
+    router.back();
   };
   return (
     <div className={styles.header}>
@@ -13,7 +13,7 @@ const Header = () => {
         style={{
           cursor: "pointer",
           marginLeft: "40px",
-          color: "#333",
+          color: "white",
           fontSize: "24px",
         }}
       >
