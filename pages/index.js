@@ -76,7 +76,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Nujen</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Analytics />
@@ -85,7 +85,7 @@ export default function Home() {
           style={{
             cursor: "pointer",
             marginLeft: "40px",
-            color: "#333",
+            color: "lavender",
             fontSize: "24px",
           }}
         >
@@ -102,7 +102,8 @@ export default function Home() {
             variant="text"
             sx={{
               marginRight: "20px",
-              color: "#333",
+              color: "lavender",
+              border: '1px solid lavender'
             }}
           >
             Pricing
@@ -113,8 +114,8 @@ export default function Home() {
           variant="outlined"
           sx={{
             marginRight: "20px",
-            color: "#333",
-            border: "1px solid #333",
+            color: "lavender",
+            border: "1px solid lavender",
           }}
           onClick={handleLogin}
         >
@@ -130,17 +131,16 @@ export default function Home() {
       </div>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Connect Your Company&apos;s Twitter & Get a Newsletter in Seconds
+          Grow your brand community
         </h1>
         <h3 className={styles.description}>
-          A newsletter generator that helps you nurture and scale your brand
-          community.
+        Connect your company&apos;s Twitter and get engaging newsletters in seconds
         </h3>
         <div className={styles.homepageBtnContainer}>
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "green",
+              backgroundColor: "#EC524C",
               color: "white",
               marginTop: "10px",
               fontFamily: "Nunito Sans",
@@ -170,7 +170,7 @@ export default function Home() {
       </main>
       <div className={styles.whySection}>
         <div className={styles.whyLeft}>
-          Why <span className={styles.green}>nujen?</span>
+          Why <span className={styles.purple}>nujen?</span>
           <ul className={styles.whyNujenList}>
             <li className={styles.bulletList}>
               Save time
@@ -243,7 +243,7 @@ export default function Home() {
             variant="contained"
             onClick={handleClick}
             sx={{
-              backgroundColor: "green",
+              backgroundColor: "#EC524C",
               padding: "10px",
               color: "white",
               marginTop: "10px",
