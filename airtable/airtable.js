@@ -86,3 +86,54 @@ export const queryFreeTrialRecord = async ({ email, handle }) => {
       });
   });
 };
+
+export function createContentRecord({ email, content, res }) {
+  base("content").create(
+    [
+      {
+        fields: {
+          email,
+          content,
+        },
+      },
+    ],
+    function (err, records) {
+      if (err) {
+        console.error(err);
+        res.status(200).json({ status: "error", err });
+        return;
+      }
+      records.forEach(function (record) {
+        console.log(record.getId());
+      });
+      res.status(200).json({ records });
+    }
+  );
+}
+
+export const readContentRecord = async ({ email }) => {
+  console.log("EMAIL", email);
+  return new Promise((res, rej) => {
+    base("content")
+      .select({
+        maxRecords: 1,
+        view: "Grid view",
+        filterByFormula: `FIND("${email}", email)`,
+      })
+      .firstPage(function (err, records) {
+        if (records.length === 1) {
+          records.forEach(function (record) {
+            res(record.get('content'))
+          });
+        }
+        if (err) {
+          console.error(err);
+          res('noRecord')
+          return;
+        }
+        console.log("err", err);
+        console.log("records", records);
+        return res("noRecord");
+      });
+  });
+};
