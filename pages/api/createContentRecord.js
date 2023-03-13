@@ -3,7 +3,7 @@ import { createContentRecord } from "../../airtable/airtable";
 
 const cors = Cors({
   methods: ['POST', 'GET', 'HEAD'],
-  origin: 'chrome-extension://oaobpbhkggcnanmbffalbodmnedpbiao'
+  origin: 'chrome-extension://mpbogojnecfmeaafgdepoahapfdafppb'
 })
 
 function runMiddleware(
